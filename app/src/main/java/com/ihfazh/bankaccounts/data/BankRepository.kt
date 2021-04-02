@@ -2,7 +2,6 @@ package com.ihfazh.bankaccounts.data
 
 import android.annotation.SuppressLint
 import com.ihfazh.bankaccounts.data.local.LocalDataSource
-import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.remote.NetworkBoundResource
 import com.ihfazh.bankaccounts.data.remote.RemoteDataSource
 import com.ihfazh.bankaccounts.data.remote.network.ApiResponse
@@ -17,7 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-@SuppressLint("CheckResult")
 class BankRepository @Inject constructor(
         private val localDataSource: LocalDataSource,
         private val remoteDataSource: RemoteDataSource
@@ -41,10 +39,9 @@ class BankRepository @Inject constructor(
 
     }.asFlowable()
 
-    override fun getBankById(id: Number): Flowable<Bank> {
-        TODO("Not yet implemented")
+    override fun getBankById(id: String): Flowable<Bank> = localDataSource.getBankById(id).map{
+        Bank(it.id, it.name, it.code, it.image)
     }
-
     override fun addBank(bank: Bank): Completable {
         TODO("Not yet implemented")
     }
@@ -57,8 +54,8 @@ class BankRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override fun addBankAccount(bankAccount: BankAccount): Completable {
-        return localDataSource.addBankAccount(BankDataMapper.mapDomainToEntity(bankAccount))
+    override fun addBankAccount(bank: BankAccount): Completable {
+        return localDataSource.addBankAccount(BankDataMapper.mapDomainToEntity(bank))
     }
 
 }

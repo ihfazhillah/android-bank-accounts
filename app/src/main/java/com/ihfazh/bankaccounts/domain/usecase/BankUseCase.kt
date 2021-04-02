@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 
 interface BankUseCase {
     fun getAllBanks(): Flowable<Resource<List<Bank>>>
-    fun getBankById(id: Number): Flowable<Bank>
+    fun getBankById(id: String): Flowable<Bank>
     fun addBank(bank: Bank): Completable
     fun updateBank(bank: Bank): Completable
     fun deleteBank(bank: Bank): Completable

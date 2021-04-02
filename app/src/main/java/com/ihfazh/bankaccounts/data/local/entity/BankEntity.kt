@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bank")
 data class BankEntity (
     @PrimaryKey var id: String,
-    @ColumnInfo val name: String?,
+    @ColumnInfo val name: String,
     @ColumnInfo val code: String?,
     @ColumnInfo val image: String?
 )

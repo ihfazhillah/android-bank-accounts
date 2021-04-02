@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 class BankInteractor (private val bankRepository: IBankRepository): BankUseCase {
     override fun getAllBanks(): Flowable<Resource<List<Bank>>> = bankRepository.getAllBanks()
 
-    override fun getBankById(id: Number): Flowable<Bank> = bankRepository.getBankById(id)
+    override fun getBankById(id: String): Flowable<Bank> = bankRepository.getBankById(id)
 
     override fun addBank(bank: Bank): Completable = bankRepository.addBank(bank)
 

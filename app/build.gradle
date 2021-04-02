@@ -102,4 +102,10 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
     kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
 
+    implementation 'com.github.miteshpithadiya:SearchableSpinner:1e4a615cdf'
+
+
+
+
+
 }

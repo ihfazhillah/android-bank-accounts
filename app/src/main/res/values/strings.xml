@@ -12,4 +12,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_banks">Banks</string>
     <string name="add_account">Add Account</string>
+    <string name="bank">Bank</string>
+    <string name="account_holder">Account Holder</string>
+    <string name="account_number">Account Number</string>
+    <string name="save">Save</string>
 </resources>

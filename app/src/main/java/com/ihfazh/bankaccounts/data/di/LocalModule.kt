@@ -12,6 +12,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -34,6 +35,33 @@ class LocalModule {
         }
     }
 
+    val migration2_3 = object: Migration(2, 3){
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("""
+                begin transaction;
+                create temporary table _bank(
+                    id TEXT,
+                    name TEXT,
+                    code TEXT,
+                    image TEXT
+                )
+                insert into _bank select id, name, code, image from bank;
+                drop table bank;
+                create table bank (
+                    id TEXT primary key not null,
+                    name TEXT not null,
+                    code TEXT,
+                    image TEXT
+                )
+                insert into bank(id, name, code, image)
+                select id, name, code, image
+                from _bank;
+                drop table _bank;
+                commit;
+            """.trimIndent())
+        }
+    }
+
     @Provides
     fun provideBankDao(appDatabase: AppDatabase): BankDao  = appDatabase.bankDao()
 
@@ -43,7 +71,7 @@ class LocalModule {
             context,
             AppDatabase::class.java,
             "bank-account.db"
-        ).addMigrations(MIGRATION_1_2)
+        ).addMigrations(MIGRATION_1_2, migration2_3)
             .build()
 
 
