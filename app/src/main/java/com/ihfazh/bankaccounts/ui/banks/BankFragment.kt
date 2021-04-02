@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentBanksBinding
-import com.ihfazh.bankaccounts.ui.adapters.BankRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

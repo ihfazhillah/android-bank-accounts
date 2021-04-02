@@ -21,5 +21,14 @@
         android:id="@+id/nav_slideshow"
         android:name="com.ihfazh.bankaccounts.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_nav_slideshow_to_bankAccountCreateFragment"
+            app:destination="@id/bankAccountCreateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bankAccountCreateFragment"
+        android:name="com.ihfazh.bankaccounts.ui.bank_account_create.BankAccountCreateFragment"
+        android:label="fragment_create_bank_account"
+        tools:layout="@layout/fragment_create_bank_account" />
 </navigation>
