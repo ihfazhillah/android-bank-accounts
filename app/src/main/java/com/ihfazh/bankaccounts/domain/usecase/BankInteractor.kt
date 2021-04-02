@@ -2,6 +2,7 @@ package com.ihfazh.bankaccounts.domain.usecase
 
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.domain.data.Bank
+import com.ihfazh.bankaccounts.domain.data.BankAccount
 import com.ihfazh.bankaccounts.domain.repository.IBankRepository
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -16,4 +17,6 @@ class BankInteractor (private val bankRepository: IBankRepository): BankUseCase 
     override fun updateBank(bank: Bank): Completable = bankRepository.updateBank(bank)
 
     override fun deleteBank(bank: Bank): Completable = bankRepository.deleteBank(bank)
+
+    override fun addBankAccount(bankAccount: BankAccount): Completable = bankRepository.addBankAccount(bankAccount)
 }

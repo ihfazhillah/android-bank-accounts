@@ -2,11 +2,13 @@ package com.ihfazh.bankaccounts.data
 
 import android.annotation.SuppressLint
 import com.ihfazh.bankaccounts.data.local.LocalDataSource
+import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.remote.NetworkBoundResource
 import com.ihfazh.bankaccounts.data.remote.RemoteDataSource
 import com.ihfazh.bankaccounts.data.remote.network.ApiResponse
 import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
 import com.ihfazh.bankaccounts.domain.data.Bank
+import com.ihfazh.bankaccounts.domain.data.BankAccount
 import com.ihfazh.bankaccounts.domain.repository.IBankRepository
 import com.ihfazh.bankaccounts.domain.utils.BankDataMapper
 import io.reactivex.Completable
@@ -53,6 +55,10 @@ class BankRepository @Inject constructor(
 
     override fun deleteBank(bank: Bank): Completable {
         TODO("Not yet implemented")
+    }
+
+    override fun addBankAccount(bankAccount: BankAccount): Completable {
+        return localDataSource.addBankAccount(BankDataMapper.mapDomainToEntity(bankAccount))
     }
 
 }
