@@ -1,7 +1,7 @@
 package com.ihfazh.bankaccounts.ui.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ihfazh.bankaccounts.domain.data.Bank
+import com.ihfazh.bankaccounts.core.domain.data.Bank
 
 class BankDiffCallback(val oldList: List<Bank>, val newList: List<Bank>): DiffUtil.Callback(){
 

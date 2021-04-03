@@ -30,12 +30,13 @@ class BankFragment : Fragment() {
         val adapter = BankRecyclerViewAdapter()
         rv.adapter = adapter
 
-        bankViewModel.allBanks.observe(requireActivity()){
-            when(it){
-               is Resource.Success ->
-                   if (it.data != null)
-                       adapter.setBanks(it.data)
-                else -> {}
+        bankViewModel.allBanks.observe(requireActivity()){ banks ->
+            when (banks) {
+                is Resource.Success ->
+                    if (banks.data != null)
+                        adapter.setBanks(banks.data!!)
+                else -> {
+                }
             }
         }
 

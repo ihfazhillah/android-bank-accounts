@@ -8,10 +8,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ihfazh.bankaccounts.core.domain.data.Bank
+import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentCreateBankAccountBinding
-import com.ihfazh.bankaccounts.domain.data.Bank
-import com.ihfazh.bankaccounts.domain.data.BankAccount
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,11 +35,15 @@ class BankAccountCreateFragment : Fragment() {
                         binding.searchBank.isClickable = false
                     }
                     is Resource.Success -> {
-                        if (bankResource.data != null){
+                        if (bankResource.data != null) {
                             binding.searchBank.isClickable = true
                             binding.searchBank.setTitle("Select Bank")
 
-                            binding.searchBank.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, bankResource.data)
+                            binding.searchBank.adapter = ArrayAdapter(
+                                requireContext(),
+                                android.R.layout.simple_spinner_dropdown_item,
+                                bankResource.data!!
+                            )
                             binding.searchBank.setPositiveButton("Yes")
 
 

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.databinding.BankItemBinding
-import com.ihfazh.bankaccounts.domain.data.Bank
 import com.ihfazh.bankaccounts.ui.utils.BankDiffCallback
 import com.squareup.picasso.Picasso
 
