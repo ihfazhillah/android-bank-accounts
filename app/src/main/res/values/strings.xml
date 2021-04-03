@@ -16,4 +16,6 @@
     <string name="account_holder">Account Holder</string>
     <string name="account_number">Account Number</string>
     <string name="save">Save</string>
+    <string name="bank_logo">Bank Logo</string>
+    <string name="accounts">Accounts</string>
 </resources>

@@ -5,8 +5,8 @@ import androidx.room.Relation
 
 data class AccountWithBank(
     @Relation(
-        parentColumn = "id",
-        entityColumn = "bank_id"
+        parentColumn = "bank_id",
+        entityColumn = "id"
     ) val bank: BankEntity,
     @Embedded val accountEntity: BankAccountEntity
 )

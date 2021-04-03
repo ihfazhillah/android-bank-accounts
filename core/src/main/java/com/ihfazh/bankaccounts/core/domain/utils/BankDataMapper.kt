@@ -2,6 +2,7 @@ package com.ihfazh.bankaccounts.core.domain.utils
 
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
+import com.ihfazh.bankaccounts.data.local.entity.AccountWithBank
 import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.local.entity.BankEntity
 import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
@@ -28,6 +29,18 @@ class BankDataMapper {
                 account_holder = bankAccount.account_holder,
                 account_number = bankAccount.account_number
             )
+        }
+
+        fun mapBankAccountEntitiesToDomain(entities: List<AccountWithBank>): List<BankAccount> {
+            return entities.map {
+                BankAccount(
+                    it.accountEntity.id,
+                    Bank(it.bank.id, it.bank.name, it.bank.code, it.bank.image),
+                    it.accountEntity.account_holder,
+                    it.accountEntity.account_number
+                )
+            }
+
         }
     }
 

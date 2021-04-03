@@ -57,4 +57,8 @@ class BankRepository @Inject constructor(
         return localDataSource.addBankAccount(BankDataMapper.mapDomainToEntity(bank))
     }
 
+    override fun getAllBankAccounts(): Flowable<List<BankAccount>> =
+        localDataSource.getAllBankAccounts().map {
+            BankDataMapper.mapBankAccountEntitiesToDomain(it)
+        }
 }

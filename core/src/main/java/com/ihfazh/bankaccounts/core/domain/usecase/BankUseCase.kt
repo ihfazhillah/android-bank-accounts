@@ -14,4 +14,5 @@ interface BankUseCase {
     fun deleteBank(bank: Bank): Completable
 
     fun addBankAccount(bankAccount: BankAccount): Completable
+    fun getAllBankAccounts(): Flowable<List<BankAccount>>
 }
