@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,13 +23,11 @@ class BankAccountCreateFragment : Fragment() {
     private val viewModel: BankAccountCreateViewModel by viewModels()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentCreateBankAccountBinding.inflate(layoutInflater)
-
-        (activity as AppCompatActivity).supportActionBar?.title = "Add Account"
 
         viewModel.allBanks.observe(requireActivity()) { bankResource ->
             when (bankResource) {
@@ -68,9 +65,13 @@ class BankAccountCreateFragment : Fragment() {
             viewModel.insertBankAccount(BankAccount(null, bank, account_holder, account_number))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
-                    findNavController().navigate(R.id.action_bankAccountCreateFragment_to_nav_slideshow)
+
+                .subscribe {
+                    findNavController().apply {
+                        navigate(R.id.action_bankAccountCreateFragment_to_nav_slideshow)
+                    }
                 }
+
         }
 
         return binding.root

@@ -18,24 +18,27 @@ class SlideshowFragment : Fragment() {
 
     private val slideshowViewModel: SlideshowViewModel by viewModels()
     private lateinit var binding: FragmentSlideshowBinding
+
     @Inject
-    lateinit var adapter: BankAccountRecyclerViewAdapter
+    lateinit var rvAdapter: BankAccountRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentSlideshowBinding.inflate(layoutInflater)
 
-        val rv = binding.rvBankAccountItems
-        rv.layoutManager = LinearLayoutManager(requireContext())
-//        val adapter = BankAccountRecyclerViewAdapter(requireContext())
         slideshowViewModel.bankAccounts.observe(requireActivity()) {
-            adapter?.setBanks(it)
+            rvAdapter.setBanks(it)
         }
-        rv.adapter = adapter
+
+        binding.rvBankAccountItems.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = rvAdapter
+        }
+
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_nav_slideshow_to_bankAccountCreateFragment)

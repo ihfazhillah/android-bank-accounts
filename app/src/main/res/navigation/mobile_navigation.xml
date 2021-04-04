@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="@string/add_account"
     app:startDestination="@id/nav_slideshow">
 
     <fragment
@@ -27,6 +28,8 @@
         tools:layout="@layout/fragment_create_bank_account">
         <action
             android:id="@+id/action_bankAccountCreateFragment_to_nav_slideshow"
-            app:destination="@id/nav_slideshow" />
+            app:destination="@id/nav_slideshow"
+            app:popUpTo="@id/nav_slideshow"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
