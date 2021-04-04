@@ -1,7 +1,10 @@
 package com.ihfazh.bankaccounts.ui.slideshow
 
 import android.app.AlertDialog
-import android.content.*
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ViewGroup
@@ -37,19 +40,21 @@ class BankAccountRecyclerViewAdapter @Inject constructor(val context: Context, v
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
                 BankAccountItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val view = ViewHolder(binding)
-        return view
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(banks[position])
-        holder.binding.btnMore.setOnClickListener {
-            val popupMenu = PopupMenu(context, holder.binding.btnMore)
-            popupMenu.menuInflater.inflate(R.menu.account_detail_menu, popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener {
-                setPopupMenuListener(it, banks[position])
+        val bank = banks.getOrNull(position)
+        if (bank != null) {
+            holder.bind(banks[position])
+            holder.binding.btnMore.setOnClickListener {
+                val popupMenu = PopupMenu(context, holder.binding.btnMore)
+                popupMenu.menuInflater.inflate(R.menu.account_detail_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener {
+                    setPopupMenuListener(it, bank)
+                }
+                popupMenu.show()
             }
-            popupMenu.show()
         }
     }
 
