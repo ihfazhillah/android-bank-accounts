@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -43,6 +44,7 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
         }
 
         slideshowViewModel.bankAccounts.observe(requireActivity()) {
+            Log.d("ONCREATEVIEW", "onCreateView: " + it.toString())
             rvAdapter.setBanks(it)
         }
 
@@ -152,7 +154,13 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
     }
 
     override fun onFavoriteClick(bankAccount: BankAccount, btn: View) {
-        TODO("Not yet implemented")
+        val disposable = slideshowViewModel.toggleFavorite(bankAccount)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+
+            }
+        compositeDisposable.add(disposable)
     }
 
     private fun showToast(text: String) {

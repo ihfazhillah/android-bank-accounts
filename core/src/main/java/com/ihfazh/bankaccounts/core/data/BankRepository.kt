@@ -78,4 +78,12 @@ class BankRepository @Inject constructor(
             BankDataMapper.mapBankAccountToEntity(bankAccount)
         )
     }
+
+    override fun toggleFavorite(bankAccount: BankAccount): Completable {
+        val newState = !bankAccount.favorite
+        bankAccount.favorite = newState
+        return localDataSource.updateBankAccount(
+            BankDataMapper.mapBankAccountToEntity(bankAccount)
+        )
+    }
 }

@@ -18,4 +18,5 @@ interface BankUseCase {
     fun deleteBankAccount(bankAccount: BankAccount): Completable
     fun getBankAccount(toInt: Int): Flowable<BankAccount>
     fun updateBankAccount(bankAccount: BankAccount): Completable
+    fun toggleFavorite(bankAccount: BankAccount): Completable
 }

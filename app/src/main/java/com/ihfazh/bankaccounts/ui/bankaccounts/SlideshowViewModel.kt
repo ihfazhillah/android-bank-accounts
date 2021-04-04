@@ -16,4 +16,6 @@ class SlideshowViewModel @Inject constructor(private val useCase: BankUseCase) :
 
     val bankAccounts = LiveDataReactiveStreams.fromPublisher(useCase.getAllBankAccounts())
 
+    fun toggleFavorite(bankAccount: BankAccount): Completable = useCase.toggleFavorite(bankAccount)
+
 }
