@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
@@ -21,6 +22,7 @@ import io.reactivex.schedulers.Schedulers
 class BankAccountCreateFragment : Fragment() {
     private lateinit var binding: FragmentCreateBankAccountBinding
     private val viewModel: BankAccountCreateViewModel by viewModels()
+    private val args: BankAccountCreateFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,13 @@ class BankAccountCreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCreateBankAccountBinding.inflate(layoutInflater)
+
+        if (args.accountId != null) {
+            args.accountId?.run {
+                binding.etAccountHolder.setText(account_holder)
+                binding.etAccountNumber.setText(account_number)
+            }
+        }
 
         viewModel.allBanks.observe(requireActivity()) { bankResource ->
             when (bankResource) {
@@ -39,13 +48,23 @@ class BankAccountCreateFragment : Fragment() {
                         binding.searchBank.isClickable = true
                         binding.searchBank.setTitle("Select Bank")
 
-                        binding.searchBank.adapter = ArrayAdapter(
+
+                        val arrayAdapter = ArrayAdapter(
                             requireContext(),
                             android.R.layout.simple_spinner_dropdown_item,
                             bankResource.data!!
                         )
-                        binding.searchBank.setPositiveButton("Yes")
 
+                        val selectedPos =
+                            if (args.accountId != null) arrayAdapter.getPosition(args.accountId!!.bank) else 0
+
+                        binding.searchBank.apply {
+                            setPositiveButton("Yes")
+                            adapter = arrayAdapter
+                            setSelection(selectedPos)
+                        }
+
+                        binding.searchBank.setPositiveButton("Yes")
 
                     }
 
@@ -61,8 +80,9 @@ class BankAccountCreateFragment : Fragment() {
 
             val bank: Bank = binding.searchBank.selectedItem as Bank
 
+            val id = args.accountId?.id
 
-            viewModel.insertBankAccount(BankAccount(null, bank, account_holder, account_number))
+            viewModel.insertOrUpdate(BankAccount(id, bank, account_holder, account_number))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 

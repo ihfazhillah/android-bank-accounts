@@ -16,4 +16,10 @@ interface BankAccountDao {
 
     @Delete
     fun delete(bankAccount: BankAccountEntity): Completable
+
+    @Query("select * from bank_account where id = :id")
+    fun get(id: Int): Flowable<AccountWithBank>
+
+    @Update
+    fun update(bankAccount: BankAccountEntity): Completable
 }

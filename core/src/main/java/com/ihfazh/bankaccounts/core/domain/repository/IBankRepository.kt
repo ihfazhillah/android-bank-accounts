@@ -16,4 +16,6 @@ interface IBankRepository {
     fun addBankAccount(bank: BankAccount): Completable
     fun getAllBankAccounts(): Flowable<List<BankAccount>>
     fun deleteBankAccount(bankAccount: BankAccount): Completable
+    fun getBankAccount(id: Int): Flowable<BankAccount>
+    fun updateBankAccount(bankAccount: BankAccount): Completable
 }

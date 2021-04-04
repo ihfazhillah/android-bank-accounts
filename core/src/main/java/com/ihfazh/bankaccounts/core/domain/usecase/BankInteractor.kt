@@ -19,11 +19,15 @@ class BankInteractor (private val bankRepository: IBankRepository): BankUseCase 
     override fun deleteBank(bank: Bank): Completable = bankRepository.deleteBank(bank)
 
     override fun addBankAccount(bankAccount: BankAccount): Completable =
-            bankRepository.addBankAccount(bankAccount)
+        bankRepository.addBankAccount(bankAccount)
 
     override fun getAllBankAccounts(): Flowable<List<BankAccount>> =
-            bankRepository.getAllBankAccounts()
+        bankRepository.getAllBankAccounts()
 
     override fun deleteBankAccount(bankAccount: BankAccount): Completable =
-            bankRepository.deleteBankAccount(bankAccount)
+        bankRepository.deleteBankAccount(bankAccount)
+
+    override fun getBankAccount(id: Int): Flowable<BankAccount> = bankRepository.getBankAccount(id)
+    override fun updateBankAccount(bankAccount: BankAccount): Completable =
+        bankRepository.updateBankAccount(bankAccount)
 }

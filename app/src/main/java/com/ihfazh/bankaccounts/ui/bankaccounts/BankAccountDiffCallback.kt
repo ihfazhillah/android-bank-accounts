@@ -1,4 +1,4 @@
-package com.ihfazh.bankaccounts.ui.slideshow
+package com.ihfazh.bankaccounts.ui.bankaccounts
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount

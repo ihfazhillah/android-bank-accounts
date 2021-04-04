@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.ihfazh.bankaccounts.ui.slideshow.SlideshowFragment"
+        android:name="com.ihfazh.bankaccounts.ui.bankaccounts.SlideshowFragment"
         android:label="Bank Account Contacts"
         tools:layout="@layout/fragment_slideshow">
         <action
@@ -31,5 +31,9 @@
             app:destination="@id/nav_slideshow"
             app:popUpTo="@id/nav_slideshow"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="account_id"
+            app:argType="com.ihfazh.bankaccounts.core.domain.data.BankAccount"
+            app:nullable="true" />
     </fragment>
 </navigation>

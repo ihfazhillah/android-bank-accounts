@@ -45,10 +45,26 @@ class BankDataMapper {
 
         fun mapBankAccountToEntity(bankAccount: BankAccount): BankAccountEntity {
             return BankAccountEntity(
-                    bankAccount.id!!,
-                    bankAccount.bank.id,
-                    bankAccount.account_holder,
-                    bankAccount.account_number
+                bankAccount.id!!,
+                bankAccount.bank.id,
+                bankAccount.account_holder,
+                bankAccount.account_number
+            )
+
+        }
+
+        fun mapBankAccountEntityToDomain(entity: AccountWithBank): BankAccount {
+            val bank = Bank(
+                entity.bank.id,
+                entity.bank.name,
+                entity.bank.code,
+                entity.bank.image
+            )
+            return BankAccount(
+                entity.accountEntity.id,
+                bank = bank,
+                account_holder = entity.accountEntity.account_holder,
+                account_number = entity.accountEntity.account_number
             )
 
         }
