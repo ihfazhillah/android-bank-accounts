@@ -5,7 +5,11 @@ import androidx.room.RoomDatabase
 import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.local.entity.BankEntity
 
-@Database(entities = [BankEntity::class, BankAccountEntity::class], version = 3, exportSchema = false)
+@Database(
+    entities = [BankEntity::class, BankAccountEntity::class],
+    version = 4,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun bankDao(): BankDao
     abstract fun bankAccountDao(): BankAccountDao

@@ -151,6 +151,10 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
         startActivity(shareIntent)
     }
 
+    override fun onFavoriteClick(bankAccount: BankAccount, btn: View) {
+        TODO("Not yet implemented")
+    }
+
     private fun showToast(text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }

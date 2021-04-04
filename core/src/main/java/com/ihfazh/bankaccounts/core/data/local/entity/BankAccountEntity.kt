@@ -31,4 +31,7 @@ class BankAccountEntity(
     @ColumnInfo(name = "account_number")
     val account_number: String,
 
+    @ColumnInfo(name = "favorite")
+    val favorite: Boolean = false
+
 )
