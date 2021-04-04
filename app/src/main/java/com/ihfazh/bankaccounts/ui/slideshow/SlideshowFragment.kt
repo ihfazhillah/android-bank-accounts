@@ -28,7 +28,7 @@ class SlideshowFragment : Fragment() {
 
         val rv = binding.rvBankAccountItems
         rv.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = BankAccountRecyclerViewAdapter()
+        val adapter = BankAccountRecyclerViewAdapter(requireContext())
         slideshowViewModel.bankAccounts.observe(requireActivity()) {
             adapter.setBanks(it)
         }

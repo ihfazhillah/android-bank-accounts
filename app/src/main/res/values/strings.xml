@@ -18,4 +18,10 @@
     <string name="save">Save</string>
     <string name="bank_logo">Bank Logo</string>
     <string name="accounts">Accounts</string>
+    <string name="more">More</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="salin_nomor">Salin Nomor</string>
+    <string name="salin_lengkap">Salin Lengkap</string>
+    <string name="edit">Edit</string>
+    <string name="hapus">Hapus</string>
 </resources>
