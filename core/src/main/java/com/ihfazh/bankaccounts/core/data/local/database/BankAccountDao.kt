@@ -1,9 +1,6 @@
 package com.ihfazh.bankaccounts.data.local.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.ihfazh.bankaccounts.data.local.entity.AccountWithBank
 import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import io.reactivex.Completable
@@ -16,4 +13,7 @@ interface BankAccountDao {
 
     @Query("select * from bank_account")
     fun getAll(): Flowable<List<AccountWithBank>>
+
+    @Delete
+    fun delete(bankAccount: BankAccountEntity): Completable
 }

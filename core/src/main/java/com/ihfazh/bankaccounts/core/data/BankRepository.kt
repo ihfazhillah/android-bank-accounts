@@ -58,7 +58,12 @@ class BankRepository @Inject constructor(
     }
 
     override fun getAllBankAccounts(): Flowable<List<BankAccount>> =
-        localDataSource.getAllBankAccounts().map {
-            BankDataMapper.mapBankAccountEntitiesToDomain(it)
-        }
+            localDataSource.getAllBankAccounts().map {
+                BankDataMapper.mapBankAccountEntitiesToDomain(it)
+            }
+
+    override fun deleteBankAccount(bankAccount: BankAccount): Completable {
+        val bankAccountEntity = BankDataMapper.mapBankAccountToEntity(bankAccount)
+        return localDataSource.deleteBankAccount(bankAccountEntity)
+    }
 }

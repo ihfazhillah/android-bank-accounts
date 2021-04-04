@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.databinding.FragmentSlideshowBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SlideshowFragment : Fragment() {
 
     private val slideshowViewModel: SlideshowViewModel by viewModels()
     private lateinit var binding: FragmentSlideshowBinding
+    @Inject
+    lateinit var adapter: BankAccountRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +31,9 @@ class SlideshowFragment : Fragment() {
 
         val rv = binding.rvBankAccountItems
         rv.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = BankAccountRecyclerViewAdapter(requireContext())
+//        val adapter = BankAccountRecyclerViewAdapter(requireContext())
         slideshowViewModel.bankAccounts.observe(requireActivity()) {
-            adapter.setBanks(it)
+            adapter?.setBanks(it)
         }
         rv.adapter = adapter
 

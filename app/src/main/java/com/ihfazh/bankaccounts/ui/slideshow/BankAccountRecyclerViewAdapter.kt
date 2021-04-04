@@ -1,9 +1,7 @@
 package com.ihfazh.bankaccounts.ui.slideshow
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.app.AlertDialog
+import android.content.*
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ViewGroup
@@ -13,10 +11,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
+import com.ihfazh.bankaccounts.core.domain.usecase.BankUseCase
 import com.ihfazh.bankaccounts.databinding.BankAccountItemBinding
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class BankAccountRecyclerViewAdapter(val context: Context) :
+class BankAccountRecyclerViewAdapter @Inject constructor(val context: Context, val useCase: BankUseCase) :
         RecyclerView.Adapter<BankAccountRecyclerViewAdapter.ViewHolder>() {
     private val banks = mutableListOf<BankAccount>()
 
@@ -80,6 +82,19 @@ class BankAccountRecyclerViewAdapter(val context: Context) :
                 context.startActivity(shareIntent)
             }
             R.id.action_delete -> {
+                val builder = AlertDialog.Builder(context)
+                        .setMessage("Anda yakin akan menghapus akun: ${bankAccount.account_holder} ?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            useCase.deleteBankAccount(bankAccount)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe()
+                        }
+                        .setNegativeButton("No") { dialog, _ ->
+                            dialog.cancel()
+                        }
+                val dialog = builder.create()
+                dialog.show()
             }
         }
         return true

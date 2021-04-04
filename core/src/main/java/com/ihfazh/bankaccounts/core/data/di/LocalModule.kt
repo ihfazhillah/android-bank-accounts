@@ -11,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -63,14 +64,15 @@ class LocalModule {
     @Provides
     fun provideBankDao(appDatabase: AppDatabase): BankDao  = appDatabase.bankDao()
 
+    @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "bank-account.db"
-        ).addMigrations(MIGRATION_1_2, migration2_3)
-            .build()
+            Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "bank-account.db"
+            ).addMigrations(MIGRATION_1_2, migration2_3)
+                    .build()
 
 
 }

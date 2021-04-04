@@ -34,12 +34,22 @@ class BankDataMapper {
         fun mapBankAccountEntitiesToDomain(entities: List<AccountWithBank>): List<BankAccount> {
             return entities.map {
                 BankAccount(
-                    it.accountEntity.id,
-                    Bank(it.bank.id, it.bank.name, it.bank.code, it.bank.image),
-                    it.accountEntity.account_holder,
-                    it.accountEntity.account_number
+                        it.accountEntity.id,
+                        Bank(it.bank.id, it.bank.name, it.bank.code, it.bank.image),
+                        it.accountEntity.account_holder,
+                        it.accountEntity.account_number
                 )
             }
+
+        }
+
+        fun mapBankAccountToEntity(bankAccount: BankAccount): BankAccountEntity {
+            return BankAccountEntity(
+                    bankAccount.id!!,
+                    bankAccount.bank.id,
+                    bankAccount.account_holder,
+                    bankAccount.account_number
+            )
 
         }
     }

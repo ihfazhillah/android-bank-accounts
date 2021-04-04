@@ -14,4 +14,5 @@ class LocalDataSource @Inject constructor(private val database: AppDatabase) {
     fun addBankAccount(bankAccount: BankAccountEntity): Completable = database.bankAccountDao().insert(bankAccount)
     fun getBankById(id: String): Flowable<BankEntity> = database.bankDao().getById(id)
     fun getAllBankAccounts(): Flowable<List<AccountWithBank>> = database.bankAccountDao().getAll()
+    fun deleteBankAccount(bankAccount: BankAccountEntity): Completable = database.bankAccountDao().delete(bankAccount)
 }
