@@ -71,15 +71,6 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
     }
 
     private fun setPopupMenuListener(menuItem: MenuItem, bankAccount: BankAccount): Boolean {
-        val clipBoard =
-            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-
-        val text = """
-                    ${bankAccount.bank.name} (${bankAccount.bank.code}),
-                    
-                    ${bankAccount.account_number}
-                    atas nama ${bankAccount.account_holder}
-                """.trimIndent()
         when (menuItem.itemId) {
             R.id.action_edit -> {
                 val action =
@@ -87,28 +78,6 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
                         bankAccount
                     )
                 findNavController().navigate(action)
-            }
-            R.id.action_copy_all -> {
-                clipBoard.setPrimaryClip(ClipData.newPlainText("bank account", text))
-                showToast("Bank Account Copied")
-            }
-            R.id.action_copy_number -> {
-                clipBoard.setPrimaryClip(
-                    ClipData.newPlainText(
-                        "bank number",
-                        bankAccount.account_number
-                    )
-                )
-                showToast("Bank Number Copied")
-            }
-            R.id.action_share -> {
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, text)
-                    type = "text/plain"
-                }
-                val shareIntent = Intent.createChooser(sendIntent, "Share Kontak Bank")
-                startActivity(shareIntent)
             }
             R.id.action_delete -> {
                 val builder = AlertDialog.Builder(context)
@@ -129,6 +98,57 @@ class SlideshowFragment : Fragment(), BankAccountItemListener {
             }
         }
         return true
+    }
+
+    override fun onCopyClick(bankAccount: BankAccount, btn: View) {
+        val popupMenu = PopupMenu(context, btn)
+        popupMenu.menuInflater.inflate(R.menu.account_detail_share_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener {
+            val text = """
+                    ${bankAccount.bank.name} (${bankAccount.bank.code}),
+                    
+                    ${bankAccount.account_number}
+                    atas nama ${bankAccount.account_holder}
+                """.trimIndent()
+            val clipBoard =
+                requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+            when (it.itemId) {
+                R.id.action_copy_all -> {
+                    clipBoard.setPrimaryClip(ClipData.newPlainText("bank account", text))
+                    showToast("Bank Account Copied")
+                }
+                R.id.action_copy_number -> {
+                    clipBoard.setPrimaryClip(
+                        ClipData.newPlainText(
+                            "bank number",
+                            bankAccount.account_number
+                        )
+                    )
+                    showToast("Bank Number Copied")
+                }
+            }
+
+            true
+        }
+        popupMenu.show()
+
+    }
+
+    override fun onShareClick(bankAccount: BankAccount, btn: View) {
+        val text = """
+                    ${bankAccount.bank.name} (${bankAccount.bank.code}),
+                    
+                    ${bankAccount.account_number}
+                    atas nama ${bankAccount.account_holder}
+                """.trimIndent()
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, "Share Kontak Bank")
+        startActivity(shareIntent)
     }
 
     private fun showToast(text: String) {

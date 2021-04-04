@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,9 @@ class BankAccountCreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCreateBankAccountBinding.inflate(layoutInflater)
+
+        setTitle()
+        setButtonText()
 
         if (args.accountId != null) {
             args.accountId?.run {
@@ -95,5 +99,23 @@ class BankAccountCreateFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setButtonText() {
+        var button = "Create"
+        if (args.accountId != null) {
+            button = "Update"
+        }
+        binding.btnSave.text = button
+    }
+
+    private fun setTitle() {
+
+        var title = "Create Account"
+        if (args.accountId != null) {
+            title = "Update Account"
+        }
+
+        (activity as AppCompatActivity).supportActionBar?.title = title
     }
 }

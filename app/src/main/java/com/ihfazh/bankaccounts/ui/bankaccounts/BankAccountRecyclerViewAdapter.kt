@@ -36,9 +36,13 @@ class BankAccountRecyclerViewAdapter :
         val bank = banks.getOrNull(position)
         if (bank != null) {
             holder.bind(banks[position])
-            holder.binding.btnMore.setOnClickListener {
-                itemListener?.onMoreClick(bank, it)
+
+            holder.binding.apply {
+                btnShare.setOnClickListener { itemListener?.onShareClick(bank, it) }
+                btnCopy.setOnClickListener { itemListener?.onCopyClick(bank, it) }
+                btnMore.setOnClickListener { itemListener?.onMoreClick(bank, it) }
             }
+
         }
     }
 
