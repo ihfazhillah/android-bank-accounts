@@ -1,5 +1,6 @@
 package com.ihfazh.bankaccounts.data.local.database
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,7 +12,7 @@ import io.reactivex.Flowable
 @Dao
 interface BankDao {
     @Query("select * from bank")
-    fun getAll(): Flowable<List<BankEntity>>
+    fun getAll(): DataSource.Factory<Int, BankEntity>
 
     @Query("select * from bank where id = :id")
     fun getById(id: String): Flowable<BankEntity>

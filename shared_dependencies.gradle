@@ -34,4 +34,8 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
     kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+
+    // paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
 }

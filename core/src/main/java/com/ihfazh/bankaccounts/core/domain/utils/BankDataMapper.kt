@@ -72,6 +72,9 @@ class BankDataMapper {
             )
 
         }
+
+        fun mapBankEntityToDomain(it: BankEntity) = Bank(it.id, it.name, it.code, it.image)
+
     }
 
 }

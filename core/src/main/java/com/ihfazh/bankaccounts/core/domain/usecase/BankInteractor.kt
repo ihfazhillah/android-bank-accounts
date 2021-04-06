@@ -1,5 +1,6 @@
 package com.ihfazh.bankaccounts.core.domain.usecase
 
+import androidx.paging.PagedList
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.core.domain.repository.IBankRepository
@@ -8,7 +9,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 
 class BankInteractor (private val bankRepository: IBankRepository): BankUseCase {
-    override fun getAllBanks(): Flowable<Resource<List<Bank>>> = bankRepository.getAllBanks()
+    override fun getAllBanks(): Flowable<Resource<PagedList<Bank>>> = bankRepository.getAllBanks()
 
     override fun getBankById(id: String): Flowable<Bank> = bankRepository.getBankById(id)
 

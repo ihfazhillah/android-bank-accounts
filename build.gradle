@@ -36,6 +36,8 @@ buildscript {
 
     ext.jrspinner_version = "1.1.0"
 
+    ext.paging_version = "2.1.2"
+
     repositories {
         google()
         jcenter()
