@@ -7,5 +7,5 @@ interface IBankAccountItemListener {
     fun onMoreClick(bankAccount: BankAccount, btn: View)
     fun onShareClick(bankAccount: BankAccount, btn: View)
     fun onCopyClick(bankAccount: BankAccount, btn: View)
-    fun onFavoriteClick(bankAccount: BankAccount, btn: View)
+    fun onFavoriteClick(bankAccount: BankAccount, btn: View, position: Int)
 }

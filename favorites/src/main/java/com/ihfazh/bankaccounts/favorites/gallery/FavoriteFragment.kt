@@ -167,7 +167,7 @@ class FavoriteFragment : Fragment(), IBankAccountItemListener {
         startActivity(shareIntent)
     }
 
-    override fun onFavoriteClick(bankAccount: BankAccount, btn: View) {
+    override fun onFavoriteClick(bankAccount: BankAccount, btn: View, position: Int) {
         val disposable = viewModel.toggleFavorite(bankAccount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

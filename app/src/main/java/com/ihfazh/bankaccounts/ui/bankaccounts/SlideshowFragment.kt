@@ -32,6 +32,7 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
     private val slideshowViewModel: SlideshowViewModel by viewModels()
     private lateinit var binding: FragmentSlideshowBinding
     private val compositeDisposable = CompositeDisposable()
+    private lateinit var rvAdapter: BankAccountRecyclerViewAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -40,7 +41,7 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
     ): View {
 
         binding = FragmentSlideshowBinding.inflate(layoutInflater)
-        val rvAdapter = BankAccountRecyclerViewAdapter().apply {
+        rvAdapter = BankAccountRecyclerViewAdapter().apply {
             itemListener = this@SlideshowFragment
         }
 
@@ -154,13 +155,18 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
         startActivity(shareIntent)
     }
 
-    override fun onFavoriteClick(bankAccount: BankAccount, btn: View) {
+    override fun onFavoriteClick(bankAccount: BankAccount, btn: View, position: Int) {
         val disposable = slideshowViewModel.toggleFavorite(bankAccount)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-
-            }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    // harus dipaksa kalau ada item yang changed :D
+                    // karena diffutil itu hanya digunakan untuk menentukan, apakah ada list yang berubah atau tidak
+                    // kalau return nya adalah list yang sama: diffutil gak akan
+                    // beritahu perubahan tersebut.
+                    // https://stackoverflow.com/questions/57520398/changes-in-mutablelivedata-is-reflected-in-observers-before-explicitly-setting-v
+                    rvAdapter.notifyItemChanged(position)
+                }
         compositeDisposable.add(disposable)
     }
 

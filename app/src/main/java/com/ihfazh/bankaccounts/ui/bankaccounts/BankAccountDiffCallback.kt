@@ -15,16 +15,14 @@ class BankAccountDiffCallback(val banks: List<BankAccount>, private val banks1: 
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val old = banks[oldItemPosition]
-        val new = banks1[newItemPosition]
-        return old == new
+        return true
 
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         // ini akan dipanggil kalau yang ada true
         Log.d("bankaccountdiffcallback", "areContentsTheSame: called")
-        val result = banks[oldItemPosition] == banks1[newItemPosition]
+        val result = banks[oldItemPosition].id == banks1[newItemPosition].id && banks[oldItemPosition].favorite == banks1[newItemPosition].favorite
         Log.d("bankaccountdiffcallback", "areContentsTheSame result: " + result)
         return result
     }

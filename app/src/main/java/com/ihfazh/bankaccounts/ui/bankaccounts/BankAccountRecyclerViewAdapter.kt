@@ -2,6 +2,7 @@ package com.ihfazh.bankaccounts.ui.bankaccounts
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ihfazh.bankaccounts.R
@@ -13,7 +14,6 @@ import com.squareup.picasso.Picasso
 class BankAccountRecyclerViewAdapter :
     RecyclerView.Adapter<BankAccountRecyclerViewAdapter.ViewHolder>() {
 
-    private val banks = mutableListOf<BankAccount>()
     var itemListener: IBankAccountItemListener? = null
 
     class ViewHolder(val binding: BankAccountItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -25,6 +25,7 @@ class BankAccountRecyclerViewAdapter :
                 .load(account.bank.image)
                 .resize(100, 50)
                 .into(binding.bankLogo)
+            toggleFavoriteIcon(account.favorite)
         }
 
         fun toggleFavoriteIcon(state: Boolean) {
@@ -43,33 +44,37 @@ class BankAccountRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val bank = banks.getOrNull(position)
+        val bank = asyncCallback.currentList.getOrNull(position)
         if (bank != null) {
 
             holder.binding.apply {
                 btnShare.setOnClickListener { itemListener?.onShareClick(bank, it) }
                 btnCopy.setOnClickListener { itemListener?.onCopyClick(bank, it) }
                 btnMore.setOnClickListener { itemListener?.onMoreClick(bank, it) }
-                btnLove.setOnClickListener { itemListener?.onFavoriteClick(bank, it) }
+                btnLove.setOnClickListener { itemListener?.onFavoriteClick(bank, it, position) }
             }
 
             holder.bind(bank)
-            holder.toggleFavoriteIcon(bank.favorite)
         }
 
     }
 
-    fun setBanks(banks: List<BankAccount>) {
+    private val diffCallback = object : DiffUtil.ItemCallback<BankAccount>() {
+        override fun areItemsTheSame(oldItem: BankAccount, newItem: BankAccount): Boolean =
+                oldItem.id == newItem.id
 
-        val diffCallback = BankAccountDiffCallback(this.banks, banks)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-
-        this.banks.clear()
-        this.banks.addAll(banks)
-        diffResult.dispatchUpdatesTo(this)
-
+        override fun areContentsTheSame(old: BankAccount, new: BankAccount): Boolean {
+            return old == new
+        }
     }
 
-    override fun getItemCount(): Int = banks.size
+    private val asyncCallback = AsyncListDiffer(this, diffCallback)
+
+    fun setBanks(banks: List<BankAccount>) {
+        asyncCallback.submitList(banks)
+    }
+
+
+    override fun getItemCount(): Int = asyncCallback.currentList.size
 
 }
