@@ -1,4 +1,4 @@
-package com.ihfazh.bankaccounts.ui.utils
+package com.ihfazh.bankaccounts.ui.banks
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ihfazh.bankaccounts.core.domain.data.Bank

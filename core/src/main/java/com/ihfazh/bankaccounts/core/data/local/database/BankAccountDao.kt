@@ -22,4 +22,7 @@ interface BankAccountDao {
 
     @Update
     fun update(bankAccount: BankAccountEntity): Completable
+
+    @Query("select * from bank_account where favorite = 1")
+    fun listFavorite(): Flowable<List<AccountWithBank>>
 }

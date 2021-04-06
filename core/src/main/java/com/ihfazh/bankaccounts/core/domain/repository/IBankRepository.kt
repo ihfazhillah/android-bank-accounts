@@ -19,4 +19,5 @@ interface IBankRepository {
     fun getBankAccount(id: Int): Flowable<BankAccount>
     fun updateBankAccount(bankAccount: BankAccount): Completable
     fun toggleFavorite(bankAccount: BankAccount): Completable
+    fun getFavoritedBankAccount(): Flowable<List<BankAccount>>
 }

@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.databinding.BankAccountItemBinding
+import com.ihfazh.bankaccounts.ui.utils.IBankAccountItemListener
 import com.squareup.picasso.Picasso
 
 class BankAccountRecyclerViewAdapter :
     RecyclerView.Adapter<BankAccountRecyclerViewAdapter.ViewHolder>() {
 
     private val banks = mutableListOf<BankAccount>()
-    var itemListener: BankAccountItemListener? = null
+    var itemListener: IBankAccountItemListener? = null
 
     class ViewHolder(val binding: BankAccountItemBinding) : RecyclerView.ViewHolder(binding.root) {
 

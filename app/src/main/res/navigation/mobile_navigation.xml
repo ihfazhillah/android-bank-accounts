@@ -35,4 +35,11 @@
             app:argType="com.ihfazh.bankaccounts.core.domain.data.BankAccount"
             app:nullable="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favoriteList"
+        android:name="com.ihfazh.bankaccounts.favorites.gallery.FavoriteFragment"
+        android:label="Favorites"
+        app:moduleName="favorites" />
+
 </navigation>

@@ -75,7 +75,7 @@ class BankRepository @Inject constructor(
 
     override fun updateBankAccount(bankAccount: BankAccount): Completable {
         return localDataSource.updateBankAccount(
-            BankDataMapper.mapBankAccountToEntity(bankAccount)
+                BankDataMapper.mapBankAccountToEntity(bankAccount)
         )
     }
 
@@ -83,7 +83,12 @@ class BankRepository @Inject constructor(
         val newState = !bankAccount.favorite
         bankAccount.favorite = newState
         return localDataSource.updateBankAccount(
-            BankDataMapper.mapBankAccountToEntity(bankAccount)
+                BankDataMapper.mapBankAccountToEntity(bankAccount)
         )
     }
+
+    override fun getFavoritedBankAccount(): Flowable<List<BankAccount>> =
+            localDataSource.getFavoritedBankAccounts().map {
+                BankDataMapper.mapBankAccountEntitiesToDomain(it)
+            }
 }

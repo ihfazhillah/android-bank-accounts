@@ -1,9 +1,9 @@
-package com.ihfazh.bankaccounts.ui.bankaccounts
+package com.ihfazh.bankaccounts.ui.utils
 
 import android.view.View
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 
-interface BankAccountItemListener {
+interface IBankAccountItemListener {
     fun onMoreClick(bankAccount: BankAccount, btn: View)
     fun onShareClick(bankAccount: BankAccount, btn: View)
     fun onCopyClick(bankAccount: BankAccount, btn: View)

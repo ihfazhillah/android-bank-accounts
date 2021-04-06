@@ -24,4 +24,6 @@
     <string name="salin_lengkap">Salin Lengkap</string>
     <string name="edit">Edit</string>
     <string name="hapus">Hapus</string>
+    <string name="title_favorites">Module Title</string>
+    <string name="favorites">Favorites</string>
 </resources>
