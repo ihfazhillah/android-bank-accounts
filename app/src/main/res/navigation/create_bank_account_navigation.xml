@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_bank_account_navigation"
+    app:startDestination="@id/step_1_select_bank">
+
+    <fragment
+        android:id="@+id/step_1_select_bank"
+        android:name="com.ihfazh.bankaccounts.ui.bank_account_create.steps.Step1"
+        android:label="Step1"></fragment>
+    <fragment
+        android:id="@+id/step_2_fill_bank_info"
+        android:name="com.ihfazh.bankaccounts.ui.bank_account_create.steps.Step2"
+        android:label="Step2" />
+</navigation>

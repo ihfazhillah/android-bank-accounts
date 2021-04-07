@@ -10,7 +10,7 @@ data class Bank(
     val code: String?,
     val image: String?
 ) : Parcelable {
-    override fun toString(): String {
-        return this.name
-    }
+//    override fun toString(): String {
+//        return this.name
+//    }
 }

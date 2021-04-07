@@ -14,14 +14,12 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.di.FavoriteModuleDependencies
 import com.ihfazh.bankaccounts.favorites.databinding.FragmentGalleryBinding
 import com.ihfazh.bankaccounts.ui.bankaccounts.BankAccountRecyclerViewAdapter
-import com.ihfazh.bankaccounts.ui.bankaccounts.SlideshowFragmentDirections
 import com.ihfazh.bankaccounts.ui.utils.IBankAccountItemListener
 import dagger.hilt.android.EntryPointAccessors
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -89,26 +87,26 @@ class FavoriteFragment : Fragment(), IBankAccountItemListener {
     private fun setPopupMenuListener(menuItem: MenuItem, bankAccount: BankAccount): Boolean {
         when (menuItem.itemId) {
             R.id.action_edit -> {
-                val action =
-                        SlideshowFragmentDirections.actionNavSlideshowToBankAccountCreateFragment(
-                                bankAccount
-                        )
-                findNavController().navigate(action)
+//                val action =
+//                        SlideshowFragmentDirections.actionNavSlideshowToBankAccountCreateFragment(
+//                                bankAccount
+//                        )
+//                findNavController().navigate(action)
             }
             R.id.action_delete -> {
                 val builder = AlertDialog.Builder(context)
-                        .setMessage("Anda yakin akan menghapus akun: ${bankAccount.account_holder} ?")
-                        .setPositiveButton("Yes") { _, _ ->
-                            val disposable = viewModel.deleteBankAccount(bankAccount)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe()
-                            compositeDisposable.add(disposable)
+                    .setMessage("Anda yakin akan menghapus akun: ${bankAccount.account_holder} ?")
+                    .setPositiveButton("Yes") { _, _ ->
+                        val disposable = viewModel.deleteBankAccount(bankAccount)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
+                        compositeDisposable.add(disposable)
 
-                        }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.cancel()
-                        }
+                    }
+                    .setNegativeButton("No") { dialog, _ ->
+                        dialog.cancel()
+                    }
                 val dialog = builder.create()
                 dialog.show()
             }

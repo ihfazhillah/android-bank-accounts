@@ -18,8 +18,9 @@ dependencies {
     // picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    // searchable spinner (dropdown bisa search)
-    implementation 'com.github.miteshpithadiya:SearchableSpinner:1e4a615cdf'
+    // stepper
+    implementation "com.github.acefalobi:android-stepper:$android_stepper_version"
+
 
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
