@@ -4,8 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.ihfazh.bankaccounts.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ihfazh.bankaccounts.data.Resource
+import com.ihfazh.bankaccounts.databinding.FragmentStep1SelectBanksBinding
+import com.ihfazh.bankaccounts.ui.bank_account_create.CreateAccountViewModel
+import com.ihfazh.bankaccounts.ui.bank_account_create.CreateBankListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,10 +24,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Step1.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class Step1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var binding: FragmentStep1SelectBanksBinding
+    private val viewModel: CreateAccountViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +46,10 @@ class Step1 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step1_select_banks, container, false)
+        binding = FragmentStep1SelectBanksBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     companion object {
@@ -58,5 +70,39 @@ class Step1 : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        viewModel.getAllBanks().observe(requireActivity(), { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.rvBanks.visibility = View.GONE
+                }
+
+                is Resource.Success -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.rvBanks.visibility = View.VISIBLE
+                    val rvAdapter = CreateBankListAdapter()
+                    rvAdapter.submitList(resource.data!!)
+                    binding.rvBanks.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        adapter = rvAdapter
+                    }
+                }
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        requireContext(),
+                        "ERROR: ${resource.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+
     }
 }

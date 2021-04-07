@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.databinding.FragmentCreateAccountBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,6 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [CreateAccountFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class CreateAccountFragment : Fragment() {
     private lateinit var binding: FragmentCreateAccountBinding
 
@@ -68,7 +70,6 @@ class CreateAccountFragment : Fragment() {
         binding.stepper.setupWithNavController(
             requireActivity().findNavController(R.id.nav_host_stepper)
         )
-        binding.stepper.goToNextStep()
     }
 
 }
