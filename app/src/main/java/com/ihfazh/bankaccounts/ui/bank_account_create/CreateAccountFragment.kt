@@ -1,11 +1,13 @@
-package com.ihfazh.bankaccounts.ui.bank_account_create.steps
+package com.ihfazh.bankaccounts.ui.bank_account_create
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.ihfazh.bankaccounts.R
+import com.ihfazh.bankaccounts.databinding.FragmentCreateAccountBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,10 +16,12 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Step2.newInstance] factory method to
+ * Use the [CreateAccountFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Step2 : Fragment() {
+class CreateAccountFragment : Fragment() {
+    private lateinit var binding: FragmentCreateAccountBinding
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,9 +37,10 @@ class Step2 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step2, container, false)
+        binding = FragmentCreateAccountBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     companion object {
@@ -45,16 +50,25 @@ class Step2 : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Step2.
+         * @return A new instance of fragment CreateAccountFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Step2().apply {
+            CreateAccountFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.stepper.setupWithNavController(
+            requireActivity().findNavController(R.id.nav_host_stepper)
+        )
+        binding.stepper.goToNextStep()
+    }
+
 }

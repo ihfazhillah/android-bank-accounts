@@ -18,8 +18,8 @@
         android:label="Bank Account Contacts"
         tools:layout="@layout/fragment_slideshow">
         <action
-            android:id="@+id/action_nav_slideshow_to_createAccountActivity"
-            app:destination="@id/createAccountActivity" />
+            android:id="@+id/action_nav_slideshow_to_createAccountFragment"
+            app:destination="@id/createAccountFragment" />
     </fragment>
 
     <fragment
@@ -27,12 +27,14 @@
         android:name="com.ihfazh.bankaccounts.favorites.gallery.FavoriteFragment"
         android:label="Favorites"
         app:moduleName="favorites" />
-
-    <activity
-        android:id="@+id/createAccountActivity"
-        android:name="com.ihfazh.bankaccounts.ui.bank_account_create.CreateAccountActivity"
-        android:label="Create Account"
-        tools:layout="@layout/activity_create_account_activity" />
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="com.ihfazh.bankaccounts.ui.bank_account_create.CreateAccountFragment"
+        android:label="Create Account">
+        <action
+            android:id="@+id/action_createAccountFragment_to_nav_slideshow"
+            app:destination="@id/nav_slideshow" />
+    </fragment>
 
 
 </navigation>

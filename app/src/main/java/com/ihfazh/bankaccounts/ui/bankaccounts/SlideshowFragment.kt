@@ -58,18 +58,18 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
 
         binding.fab.setOnClickListener {
             val action =
-                SlideshowFragmentDirections.actionNavSlideshowToCreateAccountActivity()
+                SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment()
             findNavController().navigate(action)
         }
 
         return binding.root
     }
 
-    override fun onMoreClick(bank: BankAccount, btn: View) {
+    override fun onMoreClick(bankAccount: BankAccount, btn: View) {
         val popupMenu = PopupMenu(context, btn)
         popupMenu.menuInflater.inflate(R.menu.account_detail_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener {
-            setPopupMenuListener(it, bank)
+            setPopupMenuListener(it, bankAccount)
         }
         popupMenu.show()
     }
