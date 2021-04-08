@@ -10,7 +10,11 @@
         android:id="@+id/nav_banks"
         android:name="com.ihfazh.bankaccounts.ui.banks.BankFragment"
         android:label="@string/menu_banks"
-        tools:layout="@layout/fragment_banks" />
+        tools:layout="@layout/fragment_banks">
+        <action
+            android:id="@+id/action_nav_banks_to_bankDetailFragment"
+            app:destination="@id/bankDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -34,6 +38,15 @@
         <action
             android:id="@+id/action_createAccountFragment_to_nav_slideshow"
             app:destination="@id/nav_slideshow" />
+    </fragment>
+    <fragment
+        android:id="@+id/bankDetailFragment"
+        android:name="com.ihfazh.bankaccounts.ui.bank_detail.BankDetailFragment"
+        android:label="fragment_bank_detail"
+        tools:layout="@layout/fragment_bank_detail">
+        <argument
+            android:name="bank"
+            app:argType="com.ihfazh.bankaccounts.core.domain.data.Bank" />
     </fragment>
 
 

@@ -7,25 +7,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentBanksBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BankFragment : Fragment() {
+class BankFragment : Fragment(), OnBankItemClick {
 
     private val bankViewModel: BankViewModel by viewModels()
     private lateinit var binding: FragmentBanksBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = FragmentBanksBinding.inflate(layoutInflater)
 
-        val rvAdapter = BankRecyclerViewAdapter()
+        val rvAdapter = BankRecyclerViewAdapter(this)
         binding.rvBanks.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = rvAdapter
@@ -52,5 +54,10 @@ class BankFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onClick(bank: Bank) {
+        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank)
+        findNavController().navigate(action)
     }
 }
