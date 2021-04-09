@@ -49,5 +49,12 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/bankFavoritesFragment"
+        android:name="com.ihfazh.bankaccounts.bankfavorite.BankFavoritesFragment"
+        android:label="fragment_bank_favorites"
+        app:moduleName="BankFavorite"
+        tools:layout="@layout/fragment_bank_favorites" />
+
 
 </navigation>

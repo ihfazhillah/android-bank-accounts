@@ -16,5 +16,9 @@
             android:id="@+id/nav_banks"
             android:icon="@drawable/ic_bank"
             android:title="@string/menu_banks" />
+        <item
+            android:id="@+id/bankFavoritesFragment"
+            android:icon="@drawable/ic_bank"
+            android:title="@string/banks_favorite" />
     </group>
 </menu>
