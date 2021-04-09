@@ -41,9 +41,10 @@ class BankFragment : Fragment(), OnBankItemClick {
                 }
                 is Resource.Success -> {
                     binding.loading.visibility = View.INVISIBLE
-                    if (banks.data != null)
+                    if (banks.data != null) {
                         binding.rvBanks.visibility = View.VISIBLE
-                    rvAdapter.submitList(banks.data!!)
+                        rvAdapter.submitList(banks.data!!)
+                    }
                 }
                 is Resource.Error -> {
                     binding.loading.visibility = View.INVISIBLE
