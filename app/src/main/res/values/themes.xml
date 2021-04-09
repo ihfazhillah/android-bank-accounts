@@ -22,4 +22,12 @@
     <style name="Theme.BankAccounts.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.BankAccounts.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ShapeAppearance.App.CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">40%</item>
+        <item name="cornerSizeBottomRight">40%</item>
+        <item name="backgroundColor">@color/white</item>
+        <item name="borderWidth">1dp</item>
+    </style>
 </resources>

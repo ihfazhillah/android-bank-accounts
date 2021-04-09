@@ -41,10 +41,9 @@ class BankFragment : Fragment(), OnBankItemClick {
                 }
                 is Resource.Success -> {
                     binding.loading.visibility = View.INVISIBLE
-                    binding.rvBanks.visibility = View.VISIBLE
                     if (banks.data != null)
-                        rvAdapter.submitList(banks.data!!)
-
+                        binding.rvBanks.visibility = View.VISIBLE
+                    rvAdapter.submitList(banks.data!!)
                 }
                 is Resource.Error -> {
                     binding.loading.visibility = View.INVISIBLE
@@ -57,7 +56,7 @@ class BankFragment : Fragment(), OnBankItemClick {
     }
 
     override fun onClick(bank: Bank) {
-        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank)
+        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank.id)
         findNavController().navigate(action)
     }
 }

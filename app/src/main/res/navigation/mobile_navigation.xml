@@ -45,8 +45,8 @@
         android:label="fragment_bank_detail"
         tools:layout="@layout/fragment_bank_detail">
         <argument
-            android:name="bank"
-            app:argType="com.ihfazh.bankaccounts.core.domain.data.Bank" />
+            android:name="bank_id"
+            app:argType="string" />
     </fragment>
 
 

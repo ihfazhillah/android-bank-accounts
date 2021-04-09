@@ -24,4 +24,5 @@ class LocalDataSource @Inject constructor(private val database: AppDatabase) {
             database.bankAccountDao().update(bankAccount)
 
     fun getFavoritedBankAccounts(): Flowable<List<AccountWithBank>> = database.bankAccountDao().listFavorite()
+    fun updateBank(mapBankToEntity: BankEntity): Completable = database.bankDao().update(mapBankToEntity)
 }

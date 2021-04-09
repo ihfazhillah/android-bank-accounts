@@ -12,7 +12,7 @@ class BankDataMapper {
         private  val TAG = "BankDataMapper"
        fun mapEntitiesToDomain(entities: List<BankEntity>): List<Bank>{
            return entities.map {
-               Bank(it.id, it.name, it.code, it.image)
+               Bank(it.id, it.name, it.code, it.image, it.favorite)
            }
        }
 
@@ -35,11 +35,11 @@ class BankDataMapper {
         fun mapBankAccountEntitiesToDomain(entities: List<AccountWithBank>): List<BankAccount> {
             return entities.map {
                 BankAccount(
-                    it.accountEntity.id,
-                    Bank(it.bank.id, it.bank.name, it.bank.code, it.bank.image),
-                    it.accountEntity.account_holder,
-                    it.accountEntity.account_number,
-                    it.accountEntity.favorite
+                        it.accountEntity.id,
+                        Bank(it.bank.id, it.bank.name, it.bank.code, it.bank.image, it.bank.favorite),
+                        it.accountEntity.account_holder,
+                        it.accountEntity.account_number,
+                        it.accountEntity.favorite
                 )
             }
 
@@ -58,22 +58,25 @@ class BankDataMapper {
 
         fun mapBankAccountEntityToDomain(entity: AccountWithBank): BankAccount {
             val bank = Bank(
-                entity.bank.id,
-                entity.bank.name,
-                entity.bank.code,
-                entity.bank.image
+                    entity.bank.id,
+                    entity.bank.name,
+                    entity.bank.code,
+                    entity.bank.image,
+                    entity.bank.favorite
             )
             return BankAccount(
-                entity.accountEntity.id,
-                bank = bank,
-                account_holder = entity.accountEntity.account_holder,
-                account_number = entity.accountEntity.account_number,
-                favorite = entity.accountEntity.favorite
+                    entity.accountEntity.id,
+                    bank = bank,
+                    account_holder = entity.accountEntity.account_holder,
+                    account_number = entity.accountEntity.account_number,
+                    favorite = entity.accountEntity.favorite
             )
 
         }
 
-        fun mapBankEntityToDomain(it: BankEntity) = Bank(it.id, it.name, it.code, it.image)
+        fun mapBankEntityToDomain(it: BankEntity) = Bank(it.id, it.name, it.code, it.image, it.favorite)
+        fun mapBankToEntity(bankAccount: Bank): BankEntity =
+                BankEntity(bankAccount.id, bankAccount.name, bankAccount.code, bankAccount.image, bankAccount.favorite)
 
     }
 

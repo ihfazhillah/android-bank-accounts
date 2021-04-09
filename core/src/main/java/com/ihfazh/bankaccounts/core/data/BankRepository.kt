@@ -47,7 +47,7 @@ class BankRepository @Inject constructor(
     }.asFlowable()
 
     override fun getBankById(id: String): Flowable<Bank> = localDataSource.getBankById(id).map{
-        Bank(it.id, it.name, it.code, it.image)
+        Bank(it.id, it.name, it.code, it.image, it.favorite)
     }
     override fun addBank(bank: Bank): Completable {
         TODO("Not yet implemented")
@@ -92,6 +92,15 @@ class BankRepository @Inject constructor(
         bankAccount.favorite = newState
         return localDataSource.updateBankAccount(
                 BankDataMapper.mapBankAccountToEntity(bankAccount)
+        )
+    }
+
+    override fun toggleBankFavorite(bankAccount: Bank): Completable {
+        val newState = !bankAccount.favorite
+        bankAccount.favorite = newState
+        println(bankAccount)
+        return localDataSource.updateBank(
+                BankDataMapper.mapBankToEntity(bankAccount)
         )
     }
 

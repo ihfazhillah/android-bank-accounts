@@ -37,7 +37,7 @@ class LocalModule {
     val migration2_3 = object: Migration(2, 3){
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                """
+                    """
                 begin transaction;
                 create temporary table _bank(
                     id TEXT,
@@ -66,10 +66,21 @@ class LocalModule {
     val migration3To4 = object : Migration(3, 4) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                """
+                    """
                     alter table bank_account
                     add column favorite INTEGER NOT NULL default 0;
                 """.trimIndent()
+            )
+        }
+    }
+
+    val migration4To5 = object : Migration(4, 5) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                    """
+                        alter table bank
+                        add column favorite INTEGER NOT NULL default 0;
+                    """.trimIndent()
             )
         }
     }
@@ -80,11 +91,11 @@ class LocalModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "bank-account.db"
-        ).addMigrations(MIGRATION_1_2, migration2_3, migration3To4)
+            Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "bank-account.db"
+            ).addMigrations(MIGRATION_1_2, migration2_3, migration3To4, migration4To5)
                     .build()
 
 

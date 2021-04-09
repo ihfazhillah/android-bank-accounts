@@ -17,8 +17,10 @@ interface BankUseCase {
     fun addBankAccount(bankAccount: BankAccount): Completable
     fun getAllBankAccounts(): Flowable<List<BankAccount>>
     fun deleteBankAccount(bankAccount: BankAccount): Completable
-    fun getBankAccount(toInt: Int): Flowable<BankAccount>
+    fun getBankAccount(id: Int): Flowable<BankAccount>
     fun updateBankAccount(bankAccount: BankAccount): Completable
     fun toggleFavorite(bankAccount: BankAccount): Completable
     fun getFavoritedBankAccounts(): Flowable<List<BankAccount>>
+    fun toggleBankFavorite(bankAccount: Bank): Completable
+//    fun toggleFavorite(bank: Bank): Completable
 }

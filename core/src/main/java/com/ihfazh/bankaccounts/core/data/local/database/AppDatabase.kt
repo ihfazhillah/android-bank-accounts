@@ -7,9 +7,9 @@ import com.ihfazh.bankaccounts.data.local.entity.BankEntity
 import javax.inject.Singleton
 
 @Database(
-    entities = [BankEntity::class, BankAccountEntity::class],
-    version = 4,
-    exportSchema = false
+        entities = [BankEntity::class, BankAccountEntity::class],
+        version = 5,
+        exportSchema = false
 )
 @Singleton
 abstract class AppDatabase : RoomDatabase(){

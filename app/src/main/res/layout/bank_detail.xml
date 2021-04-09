@@ -29,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@id/bank_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/bank_name"
+        android:id="@+id/btn_love"
         app:layout_constraintTop_toTopOf="@id/bank_name" />
 
     <TextView
