@@ -19,4 +19,7 @@ interface BankDao {
 
     @Update
     fun update(mapBankToEntity: BankEntity): Completable
+
+    @Query("select * from bank where favorite = 1")
+    fun getFavorites(): DataSource.Factory<Int, BankEntity>
 }

@@ -54,7 +54,11 @@
         android:name="com.ihfazh.bankaccounts.bankfavorite.BankFavoritesFragment"
         android:label="fragment_bank_favorites"
         app:moduleName="BankFavorite"
-        tools:layout="@layout/fragment_bank_favorites" />
+        tools:layout="@layout/fragment_bank_favorites">
+        <action
+            android:id="@+id/action_bankFavoritesFragment_to_bankDetailFragment"
+            app:destination="@id/bankDetailFragment" />
+    </fragment>
 
 
 </navigation>

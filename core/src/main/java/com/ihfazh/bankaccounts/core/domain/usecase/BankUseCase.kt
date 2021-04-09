@@ -9,6 +9,7 @@ import io.reactivex.Flowable
 
 interface BankUseCase {
     fun getAllBanks(): Flowable<Resource<PagedList<Bank>>>
+    fun getFavoritedbanks(): Flowable<PagedList<Bank>>
     fun getBankById(id: String): Flowable<Bank>
     fun addBank(bank: Bank): Completable
     fun updateBank(bank: Bank): Completable
@@ -22,5 +23,4 @@ interface BankUseCase {
     fun toggleFavorite(bankAccount: BankAccount): Completable
     fun getFavoritedBankAccounts(): Flowable<List<BankAccount>>
     fun toggleBankFavorite(bankAccount: Bank): Completable
-//    fun toggleFavorite(bank: Bank): Completable
 }

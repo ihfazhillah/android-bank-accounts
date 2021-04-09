@@ -10,6 +10,7 @@ import io.reactivex.Flowable
 
 class BankInteractor (private val bankRepository: IBankRepository): BankUseCase {
     override fun getAllBanks(): Flowable<Resource<PagedList<Bank>>> = bankRepository.getAllBanks()
+    override fun getFavoritedbanks(): Flowable<PagedList<Bank>> = bankRepository.getFavoritedbanks()
 
     override fun getBankById(id: String): Flowable<Bank> = bankRepository.getBankById(id)
 

@@ -108,4 +108,9 @@ class BankRepository @Inject constructor(
             localDataSource.getFavoritedBankAccounts().map {
                 BankDataMapper.mapBankAccountEntitiesToDomain(it)
             }
+
+    override fun getFavoritedbanks(): Flowable<PagedList<Bank>> =
+            localDataSource.getFavoritedBanks().map {
+                Bank(it.id, it.name, it.code, it.image, it.favorite)
+            }.toFlowable(pageSize = 10)
 }

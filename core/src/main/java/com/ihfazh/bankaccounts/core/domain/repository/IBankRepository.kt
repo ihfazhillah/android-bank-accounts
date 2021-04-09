@@ -9,6 +9,7 @@ import io.reactivex.Flowable
 
 interface IBankRepository {
     fun getAllBanks(): Flowable<Resource<PagedList<Bank>>>
+    fun getFavoritedbanks(): Flowable<PagedList<Bank>>
     fun getBankById(id: String): Flowable<Bank>
     fun addBank(bank: Bank): Completable
     fun updateBank(bank: Bank): Completable
