@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
+import com.ihfazh.bankaccounts.core.domain.utils.BankFormatter
 import com.ihfazh.bankaccounts.databinding.BankAccountItemBinding
 import com.ihfazh.bankaccounts.ui.utils.IBankAccountItemListener
 import com.squareup.picasso.Picasso
@@ -19,7 +20,7 @@ class BankAccountRecyclerViewAdapter :
     class ViewHolder(val binding: BankAccountItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(account: BankAccount) {
-            binding.tvNumber.text = account.account_number
+            binding.tvNumber.text = BankFormatter.formatAccountNumber(account.account_number)
             binding.tvHolder.text = account.account_holder
             Picasso.get()
                 .load(account.bank.image)

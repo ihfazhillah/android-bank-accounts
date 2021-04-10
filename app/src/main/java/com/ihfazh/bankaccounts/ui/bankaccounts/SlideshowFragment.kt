@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
+import com.ihfazh.bankaccounts.core.domain.utils.BankFormatter
 import com.ihfazh.bankaccounts.databinding.FragmentSlideshowBinding
 import com.ihfazh.bankaccounts.ui.utils.IBankAccountItemListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -110,9 +111,8 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
         popupMenu.setOnMenuItemClickListener {
             val text = """
                     ${bankAccount.bank.name} (${bankAccount.bank.code}),
-                    
-                    ${bankAccount.account_number}
-                    atas nama ${bankAccount.account_holder}
+                    ${BankFormatter.formatAccountNumber(bankAccount.account_number)}
+                    an. ${bankAccount.account_holder}
                 """.trimIndent()
             val clipBoard =
                 requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -142,9 +142,8 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
     override fun onShareClick(bankAccount: BankAccount, btn: View) {
         val text = """
                     ${bankAccount.bank.name} (${bankAccount.bank.code}),
-                    
-                    ${bankAccount.account_number}
-                    atas nama ${bankAccount.account_holder}
+                    ${BankFormatter.formatAccountNumber(bankAccount.account_number)}
+                    an. ${bankAccount.account_holder}
                 """.trimIndent()
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
