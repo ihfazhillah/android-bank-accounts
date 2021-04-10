@@ -34,4 +34,6 @@
     <string name="transfer_code_text">Transfer code: %1$s</string>
     <string name="title_bankfavorite">Bank Favorites</string>
     <string name="banks_favorite">Banks Favorite</string>
+    <string name="add_bank">Add Bank</string>
+    <string name="no_bank_selected">No Bank Selected.</string>
 </resources>

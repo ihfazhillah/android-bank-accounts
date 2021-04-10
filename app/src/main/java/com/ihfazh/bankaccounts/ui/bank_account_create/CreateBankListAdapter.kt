@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.databinding.BankItemBinding
+import com.ihfazh.bankaccounts.ui.banks.OnBankItemClick
 import com.squareup.picasso.Picasso
 
-class CreateBankListAdapter : PagedListAdapter<Bank, CreateBankListAdapter.ViewHolder>(DIFF_UTIL) {
+class CreateBankListAdapter(val onBankItemClick: OnBankItemClick) : PagedListAdapter<Bank, CreateBankListAdapter.ViewHolder>(DIFF_UTIL) {
     companion object {
         private val DIFF_UTIL = object : ItemCallback<Bank>() {
             override fun areItemsTheSame(oldItem: Bank, newItem: Bank): Boolean {
@@ -44,6 +45,9 @@ class CreateBankListAdapter : PagedListAdapter<Bank, CreateBankListAdapter.ViewH
         val bank = getItem(position)
         if (bank != null) {
             holder.bind(bank)
+            holder.itemView.setOnClickListener {
+                onBankItemClick.onClick(bank)
+            }
         }
     }
 

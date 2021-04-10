@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.ihfazh.bankaccounts.R
+import androidx.fragment.app.viewModels
 import com.ihfazh.bankaccounts.databinding.FragmentCreateAccountBinding
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +23,7 @@ private const val ARG_PARAM2 = "param2"
 @AndroidEntryPoint
 class CreateAccountFragment : Fragment() {
     private lateinit var binding: FragmentCreateAccountBinding
+    private val viewModel: CreateAccountViewModel by viewModels()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -67,9 +68,29 @@ class CreateAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.stepper.setupWithNavController(
-            requireActivity().findNavController(R.id.nav_host_stepper)
-        )
+
+        viewModel.bank.observe(viewLifecycleOwner) {
+            if (it == null) {
+                binding.tvNoBankSelected.visibility = View.VISIBLE
+                binding.bankItem.root.visibility = View.GONE
+            } else {
+                binding.tvNoBankSelected.visibility = View.GONE
+                binding.bankItem.apply {
+                    root.visibility = View.VISIBLE
+                    tvName.text = it.name
+                    tvCode.text = it.name
+                    Picasso.get()
+                            .load(it.image)
+                            .into(imgLogo)
+                }
+                binding.btnAddBank.text = "Change Bank"
+            }
+        }
+
+        binding.btnAddBank.setOnClickListener {
+            val dialog = ListBankDialogFragment()
+            dialog.show(childFragmentManager, ListBankDialogFragment.TAG)
+        }
     }
 
 }

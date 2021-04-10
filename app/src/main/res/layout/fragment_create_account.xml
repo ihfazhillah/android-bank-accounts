@@ -1,26 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
+    android:id="@+id/create_bank_fragments"
     tools:context=".ui.bank_account_create.CreateAccountFragment">
 
-    <com.aceinteract.android.stepper.StepperNavigationView
-        android:id="@+id/stepper"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:stepperItems="@menu/create_bank_account_menu"
-        app:stepperType="@string/stepper_type_tab" />
+        android:id="@+id/account_holder_container"
+        android:hint="@string/account_holder"
+        android:labelFor="@id/et_account_holder">
 
-    <fragment
-        android:id="@+id/nav_host_stepper"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        <EditText
+            android:id="@+id/et_account_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:navGraph="@navigation/create_bank_account_navigation"
-        tools:ignore="FragmentTagUsage" />
+        android:id="@+id/account_number_container"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/account_number"
+        android:labelFor="@id/et_number_holder">
+
+        <EditText
+            android:id="@+id/et_number_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_no_bank_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/no_bank_selected" />
+
+    <include
+        android:id="@+id/bank_item"
+        layout="@layout/bank_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_add_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_bank" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/save" />
 
 </LinearLayout>
