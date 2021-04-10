@@ -26,6 +26,7 @@ buildscript {
     ext.rxjava_version = "2.2.19"
     ext.rxkotlin_version = "2.4.0"
     ext.rxandroid_version = "2.1.1"
+    ext.rxbinding_version = "2.0.0"
     ext.nav_version = "2.3.4"
     ext.navigation_safe_args_version = "1.0.0"
 

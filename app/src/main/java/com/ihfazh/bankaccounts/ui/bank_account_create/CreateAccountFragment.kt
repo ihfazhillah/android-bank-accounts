@@ -1,14 +1,23 @@
 package com.ihfazh.bankaccounts.ui.bank_account_create
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.databinding.FragmentCreateAccountBinding
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +37,7 @@ class CreateAccountFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +76,7 @@ class CreateAccountFragment : Fragment() {
             }
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -91,6 +102,58 @@ class CreateAccountFragment : Fragment() {
             val dialog = ListBankDialogFragment()
             dialog.show(childFragmentManager, ListBankDialogFragment.TAG)
         }
+
+        val accountHolderStream = RxTextView.textChanges(binding.etAccountHolder)
+                .map { holder ->
+                    holder.toString().isNotEmpty()
+                }
+        val accountNumberStream = RxTextView.textChanges(binding.etAccountNumber)
+                .map { holder ->
+                    holder.toString().isNotEmpty()
+                }
+
+
+        val invalidStream = Observable.combineLatest(
+                accountHolderStream,
+                accountNumberStream,
+        ) { holderValid: Boolean, numberValid: Boolean ->
+            holderValid && numberValid
+        }
+
+        invalidStream.subscribe { isValid ->
+            binding.btnSave.isEnabled = isValid
+        }
+
+
+        binding.btnSave.setOnClickListener {
+            if (viewModel.bank.value != null) {
+                val bankAccount = BankAccount(
+                        null,
+                        viewModel.bank.value!!,
+                        binding.etAccountHolder.text.toString(),
+                        binding.etAccountNumber.text.toString()
+                )
+                val disposable = viewModel.addAccount(bankAccount)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            findNavController().navigateUp()
+                        }
+                compositeDisposable.add(disposable)
+            } else {
+                Toast.makeText(requireContext(), "No Bank Supplied.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        compositeDisposable.clear()
     }
 
 }

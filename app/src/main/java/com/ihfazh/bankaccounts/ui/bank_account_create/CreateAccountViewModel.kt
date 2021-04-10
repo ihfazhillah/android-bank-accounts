@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.toLiveData
 import com.ihfazh.bankaccounts.core.domain.data.Bank
+import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.core.domain.usecase.BankUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.Completable
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,4 +20,6 @@ class CreateAccountViewModel @Inject constructor(val useCase: BankUseCase) :
     fun setBank(bank: Bank) {
         this.bank.postValue(bank)
     }
+
+    fun addAccount(bankAccount: BankAccount): Completable = useCase.addBankAccount(bankAccount)
 }
