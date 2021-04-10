@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 
 @Dao
 interface BankDao {
-    @Query("select * from bank")
+    @Query("select * from bank order by favorite desc, name")
     fun getAll(): DataSource.Factory<Int, BankEntity>
 
     @Query("select * from bank where id = :id")
