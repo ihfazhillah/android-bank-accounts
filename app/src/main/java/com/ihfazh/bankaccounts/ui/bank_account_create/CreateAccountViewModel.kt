@@ -21,5 +21,11 @@ class CreateAccountViewModel @Inject constructor(val useCase: BankUseCase) :
         this.bank.postValue(bank)
     }
 
-    fun addAccount(bankAccount: BankAccount): Completable = useCase.addBankAccount(bankAccount)
+    fun addOrUpdateAccount(newBankAccount: BankAccount): Completable {
+        return if (newBankAccount.id != null) {
+            useCase.updateBankAccount(newBankAccount)
+        } else {
+            useCase.addBankAccount(newBankAccount)
+        }
+    }
 }

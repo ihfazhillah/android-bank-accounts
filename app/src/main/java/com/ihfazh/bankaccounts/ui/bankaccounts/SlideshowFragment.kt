@@ -58,7 +58,7 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
 
         binding.fab.setOnClickListener {
             val action =
-                SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment()
+                SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment(null)
             findNavController().navigate(action)
         }
 
@@ -77,11 +77,11 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
     private fun setPopupMenuListener(menuItem: MenuItem, bankAccount: BankAccount): Boolean {
         when (menuItem.itemId) {
             R.id.action_edit -> {
-//                val action =
-//                    SlideshowFragmentDirections.actionNavSlideshowToBankAccountCreateFragment(
-//                        bankAccount
-//                    )
-//                findNavController().navigate(action)
+                val action =
+                    SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment(
+                        bankAccount
+                    )
+                findNavController().navigate(action)
             }
             R.id.action_delete -> {
                 val builder = AlertDialog.Builder(context)

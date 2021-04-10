@@ -36,4 +36,5 @@
     <string name="banks_favorite">Banks Favorite</string>
     <string name="add_bank">Add Bank</string>
     <string name="no_bank_selected">No Bank Selected.</string>
+    <string name="update_bank">Update Bank</string>
 </resources>

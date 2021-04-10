@@ -1,14 +1,19 @@
 package com.ihfazh.bankaccounts.ui.bank_account_create
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.ihfazh.bankaccounts.R
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.databinding.FragmentCreateAccountBinding
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -38,6 +43,7 @@ class CreateAccountFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val compositeDisposable = CompositeDisposable()
+    private val args: CreateAccountFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +86,14 @@ class CreateAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bankAccount = args.account
+        if (bankAccount != null) {
+            (requireActivity() as AppCompatActivity).supportActionBar?.title = "Update Account"
+            viewModel.setBank(bankAccount.bank)
+            binding.etAccountHolder.setText(bankAccount.account_holder)
+            binding.etAccountNumber.setText(bankAccount.account_number)
+        }
+
         viewModel.bank.observe(viewLifecycleOwner) {
             if (it == null) {
                 binding.tvNoBankSelected.visibility = View.VISIBLE
@@ -94,7 +108,7 @@ class CreateAccountFragment : Fragment() {
                             .load(it.image)
                             .into(imgLogo)
                 }
-                binding.btnAddBank.text = "Change Bank"
+                binding.btnAddBank.text = getString(R.string.update_bank)
             }
         }
 
@@ -127,23 +141,33 @@ class CreateAccountFragment : Fragment() {
 
         binding.btnSave.setOnClickListener {
             if (viewModel.bank.value != null) {
-                val bankAccount = BankAccount(
-                        null,
-                        viewModel.bank.value!!,
-                        binding.etAccountHolder.text.toString(),
-                        binding.etAccountNumber.text.toString()
+                val newBankAccount = BankAccount(
+                    args.account?.id,
+                    viewModel.bank.value!!,
+                    binding.etAccountHolder.text.toString(),
+                    binding.etAccountNumber.text.toString()
                 )
-                val disposable = viewModel.addAccount(bankAccount)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            findNavController().navigateUp()
-                        }
+                val disposable = viewModel.addOrUpdateAccount(newBankAccount)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        hideKeyboard(view)
+                        findNavController().navigateUp()
+                    }
                 compositeDisposable.add(disposable)
             } else {
                 Toast.makeText(requireContext(), "No Bank Supplied.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = requireActivity().getSystemService(
+            Context.INPUT_METHOD_SERVICE
+        ) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            view.applicationWindowToken, InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 
     override fun onDestroy() {
