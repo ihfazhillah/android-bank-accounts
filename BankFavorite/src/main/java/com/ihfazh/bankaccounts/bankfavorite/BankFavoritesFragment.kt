@@ -66,7 +66,7 @@ class BankFavoritesFragment : Fragment(), OnFavoriteItemClick {
     }
 
     override fun onCLick(item: Bank) {
-        val direction = BankFavoritesFragmentDirections.actionBankFavoritesFragmentToBankDetailFragment(item.id)
+        val direction = BankFavoritesFragmentDirections.actionBankFavoritesFragmentToBankDetailFragment(item.id, item.name)
         findNavController().navigate(direction)
     }
 

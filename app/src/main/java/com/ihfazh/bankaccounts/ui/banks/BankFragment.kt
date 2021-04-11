@@ -68,7 +68,7 @@ class BankFragment : Fragment(), OnBankItemClick {
     }
 
     override fun onClick(bank: Bank) {
-        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank.id)
+        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank.id, bank.name)
         findNavController().navigate(action)
     }
 }

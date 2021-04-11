@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -24,6 +23,8 @@ class BankDetailFragment : Fragment() {
     val viewModel: BankDetailViewModel by viewModels()
     val compositeDisposable = CompositeDisposable()
 
+    private lateinit var title: String
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +37,18 @@ class BankDetailFragment : Fragment() {
                 false
         )
 
+        return binding.root
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+                BankDetailFragment().apply {
+                }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.setId(args.bankId)
 
         viewModel.bank.observe(requireActivity()) { bank ->
@@ -47,7 +60,6 @@ class BankDetailFragment : Fragment() {
             binding.bankDetail.bankCode.text = getString(R.string.transfer_code_text, bank.code)
 
             setFavoriteButton(bank.favorite)
-            (requireActivity() as AppCompatActivity).supportActionBar?.title = bank.name
         }
 
         binding.bankDetail.btnLove.setOnClickListener {
@@ -58,14 +70,6 @@ class BankDetailFragment : Fragment() {
                     }
             compositeDisposable.add(disposable)
         }
-        return binding.root
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-                BankDetailFragment().apply {
-                }
     }
 
 
