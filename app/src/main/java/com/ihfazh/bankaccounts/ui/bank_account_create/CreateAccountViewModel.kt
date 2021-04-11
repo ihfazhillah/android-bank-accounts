@@ -28,7 +28,7 @@ class CreateAccountViewModel @Inject constructor(val useCase: BankUseCase) :
         }
     }
 
-    val bank = MutableLiveData<Bank>()
+    val bank = MutableLiveData<Bank?>()
 
     fun setBank(bank: Bank) {
         this.bank.postValue(bank)

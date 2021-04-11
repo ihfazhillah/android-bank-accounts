@@ -130,8 +130,12 @@ class CreateAccountFragment : Fragment() {
         val invalidStream = Observable.combineLatest(
                 accountHolderStream,
                 accountNumberStream,
-        ) { holderValid: Boolean, numberValid: Boolean ->
-            holderValid && numberValid
+                Observable.fromCallable {
+                    viewModel.bank != null
+                }
+
+        ) { holderValid: Boolean, numberValid: Boolean, bankValid: Boolean ->
+            holderValid && numberValid && bankValid
         }
 
         invalidStream.subscribe { isValid ->
