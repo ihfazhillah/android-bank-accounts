@@ -14,6 +14,7 @@ interface BankUseCase {
     fun addBank(bank: Bank): Completable
     fun updateBank(bank: Bank): Completable
     fun deleteBank(bank: Bank): Completable
+    fun searchBank(search: String): Flowable<Resource<PagedList<Bank>>>
 
     fun addBankAccount(bankAccount: BankAccount): Completable
     fun getAllBankAccounts(): Flowable<List<BankAccount>>

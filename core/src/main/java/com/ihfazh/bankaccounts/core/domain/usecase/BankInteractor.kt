@@ -38,4 +38,5 @@ class BankInteractor (private val bankRepository: IBankRepository): BankUseCase 
 
     override fun getFavoritedBankAccounts(): Flowable<List<BankAccount>> = bankRepository.getFavoritedBankAccount()
     override fun toggleBankFavorite(bankAccount: Bank): Completable = bankRepository.toggleBankFavorite(bankAccount)
+    override fun searchBank(search: String): Flowable<Resource<PagedList<Bank>>> = bankRepository.searchBank(search)
 }

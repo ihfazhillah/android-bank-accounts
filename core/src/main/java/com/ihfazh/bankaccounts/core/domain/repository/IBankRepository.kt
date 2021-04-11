@@ -14,6 +14,7 @@ interface IBankRepository {
     fun addBank(bank: Bank): Completable
     fun updateBank(bank: Bank): Completable
     fun deleteBank(bank: Bank): Completable
+    fun searchBank(search: String): Flowable<Resource<PagedList<Bank>>>
 
     fun addBankAccount(bank: BankAccount): Completable
     fun getAllBankAccounts(): Flowable<List<BankAccount>>

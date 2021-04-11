@@ -1,5 +1,6 @@
 package com.ihfazh.bankaccounts.ui.banks
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentBanksBinding
+import com.jakewharton.rxbinding2.widget.RxTextView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,12 +22,14 @@ class BankFragment : Fragment(), OnBankItemClick {
     private val bankViewModel: BankViewModel by viewModels()
     private lateinit var binding: FragmentBanksBinding
 
+    @SuppressLint("CheckResult")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
         binding = FragmentBanksBinding.inflate(layoutInflater)
+        bankViewModel.setSearch("")
 
         val rvAdapter = BankRecyclerViewAdapter(this)
         binding.rvBanks.apply {
@@ -52,6 +56,13 @@ class BankFragment : Fragment(), OnBankItemClick {
                 }
             }
         }
+
+        RxTextView.textChanges(binding.etSearch)
+                .skipInitialValue()
+                .subscribe {
+                    bankViewModel.setSearch(it.toString())
+                }
+
 
         return binding.root
     }

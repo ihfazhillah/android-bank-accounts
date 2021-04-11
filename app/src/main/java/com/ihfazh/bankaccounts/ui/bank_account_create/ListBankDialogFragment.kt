@@ -1,5 +1,6 @@
 package com.ihfazh.bankaccounts.ui.bank_account_create
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentBanksBinding
 import com.ihfazh.bankaccounts.ui.banks.OnBankItemClick
+import com.jakewharton.rxbinding2.widget.RxTextView
 
 class ListBankDialogFragment : BottomSheetDialogFragment(), OnBankItemClick {
     companion object {
@@ -20,7 +22,7 @@ class ListBankDialogFragment : BottomSheetDialogFragment(), OnBankItemClick {
     private lateinit var binding: FragmentBanksBinding
     private val viewModel: CreateAccountViewModel by viewModels({ requireParentFragment() })
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentBanksBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,18 +34,19 @@ class ListBankDialogFragment : BottomSheetDialogFragment(), OnBankItemClick {
 //        return builder.create()
 //    }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dialog?.setTitle("Select Bank")
-
+        viewModel.setSearch("")
 
         val rvAdapter = CreateBankListAdapter(this)
         binding.rvBanks.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = rvAdapter
         }
-        viewModel.getAllBanks().observe(viewLifecycleOwner) {
+        viewModel.allBanks.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Error ->
                     dismiss()
@@ -62,6 +65,11 @@ class ListBankDialogFragment : BottomSheetDialogFragment(), OnBankItemClick {
 
         }
 
+        RxTextView.textChanges(binding.etSearch)
+                .skipInitialValue()
+                .subscribe {
+                    viewModel.setSearch(it.toString())
+                }
     }
 
     override fun onClick(bank: Bank) {

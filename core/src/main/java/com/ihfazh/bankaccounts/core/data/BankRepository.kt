@@ -113,4 +113,29 @@ class BankRepository @Inject constructor(
             localDataSource.getFavoritedBanks().map {
                 Bank(it.id, it.name, it.code, it.image, it.favorite)
             }.toFlowable(pageSize = 10)
+
+    override fun searchBank(search: String): Flowable<Resource<PagedList<Bank>>> =
+            object : NetworkBoundResource<PagedList<Bank>, List<BanksItem>>() {
+                override fun loadFromDB(): Flowable<PagedList<Bank>> =
+                        localDataSource.searchBank(search).map {
+                            BankDataMapper.mapBankEntityToDomain(it)
+                        }.toFlowable(pageSize = 10)
+//            localDataSource.getAllBanks().map{
+//            BankDataMapper.mapEntitiesToDomain(it)
+//        }.toFlowable(pageSize = 20)
+
+                override fun shouldFetch(data: PagedList<Bank>?): Boolean = data.isNullOrEmpty()
+                override fun createCall(): Flowable<ApiResponse<List<BanksItem>>> =
+                        remoteDataSource.getAllBanks()
+
+                override fun saveCallResult(data: List<BanksItem>) {
+                    localDataSource.addAll(BankDataMapper.mapDomainsToEntities(data))
+                            .subscribeOn(
+                                    Schedulers.computation()
+                            )
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
+                }
+
+            }.asFlowable()
 }

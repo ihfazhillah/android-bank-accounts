@@ -22,4 +22,7 @@ interface BankDao {
 
     @Query("select * from bank where favorite = 1")
     fun getFavorites(): DataSource.Factory<Int, BankEntity>
+
+    @Query("select * from bank where UPPER(name) like :search")
+    fun searchBank(search: String): DataSource.Factory<Int, BankEntity>
 }

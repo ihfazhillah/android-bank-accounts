@@ -6,6 +6,7 @@ import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.local.entity.BankEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import java.util.*
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val database: AppDatabase) {
@@ -26,4 +27,5 @@ class LocalDataSource @Inject constructor(private val database: AppDatabase) {
 
     fun getFavoritedBankAccounts(): Flowable<List<AccountWithBank>> = database.bankAccountDao().listFavorite()
     fun updateBank(mapBankToEntity: BankEntity): Completable = database.bankDao().update(mapBankToEntity)
+    fun searchBank(search: String) = database.bankDao().searchBank("%${search.toUpperCase(Locale.ROOT)}%")
 }
