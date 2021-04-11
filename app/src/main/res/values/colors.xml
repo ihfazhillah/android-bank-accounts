@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sky_blue_400">#29b4f9</color>
+    <color name="sky_blue_700">#1085d3</color>
+    <color name="sky_blue_50">#e1f5ff</color>
+
+    <color name="ligth_red_400">#ff5f57</color>
+    <color name="ligth_red_700">#e43e36</color>
+    <color name="ligth_red_50">#ffedf0</color>
 </resources>

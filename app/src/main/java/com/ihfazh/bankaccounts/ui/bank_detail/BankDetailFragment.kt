@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -46,6 +47,7 @@ class BankDetailFragment : Fragment() {
             binding.bankDetail.bankCode.text = getString(R.string.transfer_code_text, bank.code)
 
             setFavoriteButton(bank.favorite)
+            (requireActivity() as AppCompatActivity).supportActionBar?.title = bank.name
         }
 
         binding.bankDetail.btnLove.setOnClickListener {

@@ -46,7 +46,6 @@
     <fragment
         android:id="@+id/bankDetailFragment"
         android:name="com.ihfazh.bankaccounts.ui.bank_detail.BankDetailFragment"
-        android:label="fragment_bank_detail"
         tools:layout="@layout/fragment_bank_detail">
         <argument
             android:name="bank_id"
@@ -56,7 +55,7 @@
     <fragment
         android:id="@+id/bankFavoritesFragment"
         android:name="com.ihfazh.bankaccounts.bankfavorite.BankFavoritesFragment"
-        android:label="fragment_bank_favorites"
+        android:label="@string/banks_favorite"
         app:moduleName="BankFavorite"
         tools:layout="@layout/fragment_bank_favorites">
         <action
