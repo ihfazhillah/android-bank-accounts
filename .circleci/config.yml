@@ -21,6 +21,7 @@ jobs:
           paths:
             - ~/.android/build-cache
             - ~/.android/cache
+            - ~/app/lint-baseline.xml
       - run:
           name: Run Build
           command: ./gradlew build
