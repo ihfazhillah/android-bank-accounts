@@ -1,6 +1,6 @@
 package com.ihfazh.bankaccounts.data.remote
 
-import com.ihfazh.bankaccounts.data.Resource
+import com.ihfazh.bankaccounts.core.data.Resource
 import com.ihfazh.bankaccounts.data.remote.network.ApiResponse
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable

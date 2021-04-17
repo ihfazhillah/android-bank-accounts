@@ -8,11 +8,11 @@ import org.jetbrains.uast.UElement
 
 @Suppress("UnstableApiUsage")
 class NamingPatternDetector : Detector(), Detector.UastScanner {
-    override fun getApplicableUastTypes(): List<Class<out UElement>>? {
+    override fun getApplicableUastTypes(): List<Class<out UElement>> {
         return listOf(UClass::class.java)
     }
 
-    override fun createUastHandler(context: JavaContext): UElementHandler? {
+    override fun createUastHandler(context: JavaContext): UElementHandler {
         return object : UElementHandler() {
             override fun visitClass(node: UClass) {
                 if (node.name?.isDefinedCamelCase() == false) {

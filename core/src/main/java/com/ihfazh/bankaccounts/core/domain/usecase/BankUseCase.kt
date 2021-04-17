@@ -1,9 +1,9 @@
 package com.ihfazh.bankaccounts.core.domain.usecase
 
 import androidx.paging.PagedList
+import com.ihfazh.bankaccounts.core.data.Resource
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
-import com.ihfazh.bankaccounts.data.Resource
 import io.reactivex.Completable
 import io.reactivex.Flowable
 

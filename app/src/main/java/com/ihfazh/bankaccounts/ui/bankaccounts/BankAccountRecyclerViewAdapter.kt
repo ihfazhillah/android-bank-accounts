@@ -29,7 +29,7 @@ class BankAccountRecyclerViewAdapter :
             toggleFavoriteIcon(account.favorite)
         }
 
-        fun toggleFavoriteIcon(state: Boolean) {
+        private fun toggleFavoriteIcon(state: Boolean) {
             if (state) {
                 binding.btnLove.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {

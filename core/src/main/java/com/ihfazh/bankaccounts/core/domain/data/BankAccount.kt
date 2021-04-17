@@ -10,5 +10,5 @@ data class BankAccount(
     val account_holder: String,
     val account_number: String,
     var favorite: Boolean = false
-) : Parcelable {
-}
+) : Parcelable
+

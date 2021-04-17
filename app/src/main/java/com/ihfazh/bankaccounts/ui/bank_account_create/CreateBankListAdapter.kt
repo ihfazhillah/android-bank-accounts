@@ -10,7 +10,8 @@ import com.ihfazh.bankaccounts.databinding.BankItemBinding
 import com.ihfazh.bankaccounts.ui.banks.OnBankItemClick
 import com.squareup.picasso.Picasso
 
-class CreateBankListAdapter(val onBankItemClick: OnBankItemClick) : PagedListAdapter<Bank, CreateBankListAdapter.ViewHolder>(DIFF_UTIL) {
+class CreateBankListAdapter(private val onBankItemClick: OnBankItemClick) :
+    PagedListAdapter<Bank, CreateBankListAdapter.ViewHolder>(DIFF_UTIL) {
     companion object {
         private val DIFF_UTIL = object : ItemCallback<Bank>() {
             override fun areItemsTheSame(oldItem: Bank, newItem: Bank): Boolean {

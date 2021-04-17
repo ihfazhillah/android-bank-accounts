@@ -16,6 +16,7 @@
         android:labelFor="@id/et_account_holder">
 
         <EditText
+            android:hint="@string/account_holder"
             android:id="@+id/et_account_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
+            android:hint="@string/account_number"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 

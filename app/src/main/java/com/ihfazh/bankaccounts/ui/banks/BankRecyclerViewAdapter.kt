@@ -9,15 +9,15 @@ import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.databinding.BankItemBinding
 import com.squareup.picasso.Picasso
 
-class BankRecyclerViewAdapter(val onBankItemClick: OnBankItemClick) :
-        PagedListAdapter<Bank, BankRecyclerViewAdapter.ViewHolder>(diffCallback) {
+class BankRecyclerViewAdapter(private val onBankItemClick: OnBankItemClick) :
+    PagedListAdapter<Bank, BankRecyclerViewAdapter.ViewHolder>(diffCallback) {
     companion object {
         private val diffCallback = object : ItemCallback<Bank>() {
             override fun areItemsTheSame(oldItem: Bank, newItem: Bank): Boolean =
-                    oldItem.id == newItem.id
+                oldItem.id == newItem.id
 
             override fun areContentsTheSame(oldItem: Bank, newItem: Bank): Boolean =
-                    oldItem == newItem
+                oldItem == newItem
         }
     }
 

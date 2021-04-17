@@ -6,7 +6,8 @@ import com.ihfazh.bankaccounts.core.domain.usecase.BankUseCase
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory @Inject constructor(val bankUseCase: BankUseCase) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory @Inject constructor(private val bankUseCase: BankUseCase) :
+    ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
             return FavoriteViewModel(bankUseCase) as T

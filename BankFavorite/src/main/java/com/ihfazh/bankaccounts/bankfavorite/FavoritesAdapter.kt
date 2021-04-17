@@ -9,7 +9,8 @@ import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.databinding.BankItemBinding
 import com.squareup.picasso.Picasso
 
-class FavoritesAdapter(val onItemClick: OnFavoriteItemClick) : PagedListAdapter<Bank, FavoritesAdapter.ViewHolder>(DIFF_CALLBACK) {
+class FavoritesAdapter(private val onItemClick: OnFavoriteItemClick) :
+    PagedListAdapter<Bank, FavoritesAdapter.ViewHolder>(DIFF_CALLBACK) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Bank>() {
             override fun areItemsTheSame(oldItem: Bank, newItem: Bank): Boolean {
@@ -22,15 +23,15 @@ class FavoritesAdapter(val onItemClick: OnFavoriteItemClick) : PagedListAdapter<
         }
     }
 
-    class ViewHolder(val binding: BankItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: BankItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(bank: Bank) {
             binding.tvCode.text = bank.code
             binding.tvName.text = bank.name
 
             Picasso.get()
-                    .load(bank.image)
-                    .resize(100, 50)
-                    .into(binding.imgLogo)
+                .load(bank.image)
+                .resize(100, 50)
+                .into(binding.imgLogo)
         }
 
     }

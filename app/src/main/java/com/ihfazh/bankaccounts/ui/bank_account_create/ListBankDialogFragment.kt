@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.ihfazh.bankaccounts.core.data.Resource
 import com.ihfazh.bankaccounts.core.domain.data.Bank
-import com.ihfazh.bankaccounts.data.Resource
 import com.ihfazh.bankaccounts.databinding.FragmentBanksBinding
 import com.ihfazh.bankaccounts.ui.banks.OnBankItemClick
 import com.jakewharton.rxbinding2.widget.RxTextView
 
 class ListBankDialogFragment : BottomSheetDialogFragment(), OnBankItemClick {
     companion object {
-        val TAG = "ListBankDialogFragment"
+        const val TAG = "ListBankDialogFragment"
     }
 
     private lateinit var binding: FragmentBanksBinding

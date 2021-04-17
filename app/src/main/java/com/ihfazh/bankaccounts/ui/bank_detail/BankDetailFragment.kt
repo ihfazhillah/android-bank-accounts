@@ -23,8 +23,6 @@ class BankDetailFragment : Fragment() {
     val viewModel: BankDetailViewModel by viewModels()
     val compositeDisposable = CompositeDisposable()
 
-    private lateinit var title: String
-
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

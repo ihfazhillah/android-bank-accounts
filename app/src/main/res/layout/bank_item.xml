@@ -36,6 +36,7 @@
             tools:text="Mandiri"
             android:id="@+id/tv_name"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:textStyle="bold"
             android:textSize="18sp"
             />
@@ -48,6 +49,7 @@
             android:id="@+id/tv_code"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
