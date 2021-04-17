@@ -30,7 +30,6 @@ import io.reactivex.schedulers.Schedulers
 class SlideshowFragment : Fragment(), IBankAccountItemListener {
 
     private val slideshowViewModel: SlideshowViewModel by viewModels()
-    private lateinit var binding: FragmentSlideshowBinding
     private val compositeDisposable = CompositeDisposable()
     private lateinit var rvAdapter: BankAccountRecyclerViewAdapter
 
@@ -40,12 +39,27 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
             savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentSlideshowBinding.inflate(layoutInflater)
+        val binding = FragmentSlideshowBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onMoreClick(bankAccount: BankAccount, btn: View) {
+        val popupMenu = PopupMenu(context, btn)
+        popupMenu.menuInflater.inflate(R.menu.account_detail_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener {
+            setPopupMenuListener(it, bankAccount)
+        }
+        popupMenu.show()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentSlideshowBinding.bind(view)
         rvAdapter = BankAccountRecyclerViewAdapter().apply {
             itemListener = this@SlideshowFragment
         }
 
-        slideshowViewModel.bankAccounts.observe(requireActivity()) {
+        slideshowViewModel.bankAccounts.observe(viewLifecycleOwner) {
             rvAdapter.setBanks(it)
         }
 
@@ -61,16 +75,6 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
             findNavController().navigate(action)
         }
 
-        return binding.root
-    }
-
-    override fun onMoreClick(bankAccount: BankAccount, btn: View) {
-        val popupMenu = PopupMenu(context, btn)
-        popupMenu.menuInflater.inflate(R.menu.account_detail_menu, popupMenu.menu)
-        popupMenu.setOnMenuItemClickListener {
-            setPopupMenuListener(it, bankAccount)
-        }
-        popupMenu.show()
     }
 
     private fun setPopupMenuListener(menuItem: MenuItem, bankAccount: BankAccount): Boolean {

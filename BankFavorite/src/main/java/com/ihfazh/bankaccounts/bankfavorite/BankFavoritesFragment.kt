@@ -56,9 +56,9 @@ class BankFavoritesFragment : Fragment(), OnFavoriteItemClick {
         val rvAdapter = FavoritesAdapter(this)
         binding.rvBanks.apply {
             adapter = rvAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(context.applicationContext)
         }
-        viewModel.getFavorites().observe(requireActivity()) {
+        viewModel.getFavorites().observe(viewLifecycleOwner) {
             binding.progressBar.visibility = View.GONE
             binding.rvBanks.visibility = View.VISIBLE
             rvAdapter.submitList(it)

@@ -49,11 +49,11 @@ class BankDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setId(args.bankId)
 
-        viewModel.bank.observe(requireActivity()) { bank ->
+        viewModel.bank.observe(viewLifecycleOwner) { bank ->
             Picasso.get()
-                    .load(bank.image)
-                    .resize(150, 75)
-                    .into(binding.imgLogo)
+                .load(bank.image)
+                .resize(150, 75)
+                .into(binding.imgLogo)
             binding.bankDetail.bankName.text = bank.name
             binding.bankDetail.bankCode.text = getString(R.string.transfer_code_text, bank.code)
 

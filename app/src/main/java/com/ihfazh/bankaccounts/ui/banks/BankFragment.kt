@@ -20,34 +20,50 @@ import dagger.hilt.android.AndroidEntryPoint
 class BankFragment : Fragment(), OnBankItemClick {
 
     private val bankViewModel: BankViewModel by viewModels()
-    private lateinit var binding: FragmentBanksBinding
 
     @SuppressLint("CheckResult")
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBanksBinding.inflate(layoutInflater)
+        val binding: FragmentBanksBinding = FragmentBanksBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onClick(bank: Bank) {
+        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank.id, bank.name)
+        findNavController().navigate(action)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentBanksBinding.bind(view)
         bankViewModel.setSearch("")
 
         val rvAdapter = BankRecyclerViewAdapter(this)
         binding.rvBanks.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(context.applicationContext)
             adapter = rvAdapter
         }
 
-        bankViewModel.allBanks.observe(requireActivity()) { banks ->
+        bankViewModel.allBanks.observe(viewLifecycleOwner) { banks ->
             when (banks) {
                 is Resource.Loading -> {
-                    binding.loading.visibility = View.VISIBLE
-                    binding.rvBanks.visibility = View.INVISIBLE
+                    with(binding) {
+                        loading.visibility = View.VISIBLE
+                        rvBanks.visibility = View.INVISIBLE
+                    }
                 }
                 is Resource.Success -> {
-                    binding.loading.visibility = View.INVISIBLE
-                    if (banks.data != null) {
-                        binding.rvBanks.visibility = View.VISIBLE
-                        rvAdapter.submitList(banks.data!!)
+                    with(binding) {
+                        loading.visibility = View.INVISIBLE
+                        val data = banks.data
+                        if (data != null) {
+                            rvBanks.visibility = View.VISIBLE
+                            rvAdapter.submitList(data)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -58,17 +74,9 @@ class BankFragment : Fragment(), OnBankItemClick {
         }
 
         RxTextView.textChanges(binding.etSearch)
-                .skipInitialValue()
-                .subscribe {
-                    bankViewModel.setSearch(it.toString())
-                }
-
-
-        return binding.root
-    }
-
-    override fun onClick(bank: Bank) {
-        val action = BankFragmentDirections.actionNavBanksToBankDetailFragment(bank.id, bank.name)
-        findNavController().navigate(action)
+            .skipInitialValue()
+            .subscribe {
+                bankViewModel.setSearch(it.toString())
+            }
     }
 }
