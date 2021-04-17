@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="BankAccounts.app" target="1.8" />
+      <module name="BankAccounts.BankFavorite" target="1.8" />
+      <module name="BankAccounts.core" target="1.8" />
+      <module name="BankAccounts.favorites" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

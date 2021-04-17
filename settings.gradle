@@ -1,3 +1,4 @@
+include ':lint'
 include ':BankFavorite'
 include ':favorites'
 include ':core'

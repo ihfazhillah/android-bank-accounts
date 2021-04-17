@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class InteractorModule {
+class InteractorMOdule {
     @Provides
     fun provideUseCase(bankRepository: BankRepository): BankUseCase = BankInteractor(bankRepository)
 }
