@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues by="lint 4.1.2" client="gradle" format="5" variant="debug" version="4.1.2">
+
+    <issue errorLine1="    &lt;fragment" errorLine2="     ~~~~~~~~" id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView.">
+        <location column="6" file="src/main/res/layout/content_main.xml" line="10" />
+    </issue>
+
+    <issue
+        errorLine1="    implementation &quot;org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of org.jetbrains.kotlin:kotlin-stdlib than 1.4.20 is available: 1.4.31">
+        <location column="5" file="build.gradle" line="55" />
+    </issue>
+
+    <issue errorLine1="    api &quot;androidx.navigation:navigation-fragment-ktx:$nav_version&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-fragment-ktx than 2.3.4 is available: 2.3.5">
+        <location column="5" file="build.gradle" line="64" />
+    </issue>
+
+    <issue errorLine1="    api &quot;androidx.navigation:navigation-ui-ktx:$nav_version&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-ui-ktx than 2.3.4 is available: 2.3.5">
+        <location column="5" file="build.gradle" line="65" />
+    </issue>
+
+    <issue
+        errorLine1="    api &quot;androidx.navigation:navigation-dynamic-features-fragment:$nav_version&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-dynamic-features-fragment than 2.3.4 is available: 2.3.5">
+        <location column="5" file="build.gradle" line="68" />
+    </issue>
+
+    <issue
+        errorLine1="    androidTestImplementation &quot;androidx.navigation:navigation-testing:$nav_version&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-testing than 2.3.4 is available: 2.3.5">
+        <location column="5" file="build.gradle" line="71" />
+    </issue>
+
+    <issue errorLine1="    &lt;application" errorLine2="     ~~~~~~~~~~~" id="AllowBackup"
+        message="On SDK version 23 and up, your app data will be automatically backed up and restored on app install. Consider adding the attribute `android:fullBackupContent` to specify an `@xml` resource which configures which files to backup. More info: https://developer.android.com/training/backup/autosyncapi.html">
+        <location column="6" file="src/main/AndroidManifest.xml" line="8" />
+    </issue>
+
+    <issue id="ObsoleteSdkInt"
+        message="This folder configuration (`v21`) is unnecessary; `minSdkVersion` is 21. Merge all the resources in this folder into `drawable`.">
+        <location file="src/main/res/drawable-v21" />
+    </issue>
+
+    <issue errorLine1="    &lt;color name=&quot;purple_500&quot;>#FF6200EE&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.color.purple_500` appears to be unused">
+        <location column="12" file="src/main/res/values/colors.xml" line="4" />
+    </issue>
+
+    <issue errorLine1="    &lt;color name=&quot;teal_700&quot;>#FF018786&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.color.teal_700` appears to be unused">
+        <location column="12" file="src/main/res/values/colors.xml" line="7" />
+    </issue>
+
+    <issue errorLine1="    &lt;color name=&quot;ligth_red_50&quot;>#ffedf0&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.color.ligth_red_50` appears to be unused">
+        <location column="12" file="src/main/res/values/colors.xml" line="16" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.menu.create_bank_account_menu` appears to be unused">
+        <location column="1" file="src/main/res/menu/create_bank_account_menu.xml" line="2" />
+    </issue>
+
+    <issue errorLine1="    &lt;dimen name=&quot;activity_horizontal_margin&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.dimen.activity_horizontal_margin` appears to be unused">
+        <location column="12" file="src/main/res/values/dimens.xml" line="3" />
+    </issue>
+
+    <issue errorLine1="    &lt;dimen name=&quot;activity_vertical_margin&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.dimen.activity_vertical_margin` appears to be unused">
+        <location column="12" file="src/main/res/values/dimens.xml" line="4" />
+    </issue>
+
+    <issue errorLine1="    &lt;dimen name=&quot;nav_header_vertical_spacing&quot;>8dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.dimen.nav_header_vertical_spacing` appears to be unused">
+        <location column="12" file="src/main/res/values/dimens.xml" line="5" />
+    </issue>
+
+    <issue errorLine1="    &lt;dimen name=&quot;nav_header_height&quot;>176dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.dimen.nav_header_height` appears to be unused">
+        <location column="12" file="src/main/res/values/dimens.xml" line="6" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;item name=&quot;ic_menu_manage&quot; type=&quot;drawable&quot;>@android:drawable/ic_menu_manage&lt;/item>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.drawable.ic_menu_manage` appears to be unused">
+        <location column="11" file="src/main/res/values/drawables.xml" line="5" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;item name=&quot;ic_menu_send&quot; type=&quot;drawable&quot;>@android:drawable/ic_menu_send&lt;/item>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.drawable.ic_menu_send` appears to be unused">
+        <location column="11" file="src/main/res/values/drawables.xml" line="7" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.layout.fragment_gallery` appears to be unused">
+        <location column="1" file="../favorites/src/main/res/layout/fragment_gallery.xml"
+            line="2" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.ic_baseline_add_24` appears to be unused">
+        <location column="1" file="src/main/res/drawable/ic_baseline_add_24.xml" line="1" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.ic_baseline_more_horiz` appears to be unused">
+        <location column="1" file="src/main/res/drawable/ic_baseline_more_horiz.xml" line="1" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.ic_menu_camera` appears to be unused">
+        <location column="1" file="src/main/res/drawable-v21/ic_menu_camera.xml" line="1" />
+        <location column="11" file="src/main/res/values/drawables.xml" line="2" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.ic_menu_gallery` appears to be unused">
+        <location column="1" file="src/main/res/drawable-v21/ic_menu_gallery.xml" line="1" />
+        <location column="11" file="src/main/res/values/drawables.xml" line="3" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.ic_menu_slideshow` appears to be unused">
+        <location column="1" file="src/main/res/drawable-v21/ic_menu_slideshow.xml" line="1" />
+        <location column="11" file="src/main/res/values/drawables.xml" line="4" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.menu.main` appears to be unused">
+        <location column="1" file="src/main/res/menu/main.xml" line="2" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.layout.nav_header_main` appears to be unused">
+        <location column="1" file="src/main/res/layout/nav_header_main.xml" line="2" />
+    </issue>
+
+    <issue
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^" id="UnusedResources"
+        message="The resource `R.drawable.side_nav_bar` appears to be unused">
+        <location column="1" file="src/main/res/drawable/side_nav_bar.xml" line="1" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;navigation_drawer_open&quot;>Open navigation drawer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.navigation_drawer_open` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="3" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;navigation_drawer_close&quot;>Close navigation drawer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.navigation_drawer_close` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="4" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;nav_header_title&quot;>Android Studio&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.nav_header_title` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="5" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;nav_header_subtitle&quot;>android.studio@android.com&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.nav_header_subtitle` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="6" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;nav_header_desc&quot;>Navigation header&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.nav_header_desc` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="7" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;action_settings&quot;>Settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.action_settings` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="8" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;menu_home&quot;>Home&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.menu_home` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="10" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;menu_gallery&quot;>Gallery&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.menu_gallery` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="11" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;menu_slideshow&quot;>Slideshow&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.menu_slideshow` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="12" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;bank&quot;>Bank&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.bank` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="15" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;bagikan&quot;>Bagikan&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.bagikan` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="22" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;title_favorites&quot;>Module Title&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.title_favorites` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="27" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;select_bank&quot;>Select Bank&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.select_bank` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="29" />
+    </issue>
+
+    <issue errorLine1="    &lt;string name=&quot;fill_bank_info&quot;>Fill Bank Info&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.fill_bank_info` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="30" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;hello_blank_fragment&quot;>Hello blank fragment&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.hello_blank_fragment` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="32" />
+        <location column="13" file="../BankFavorite/src/main/res/values/strings.xml" line="3" />
+    </issue>
+
+    <issue
+        errorLine1="    &lt;string name=&quot;title_bankfavorite&quot;>Bank Favorites&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~" id="UnusedResources"
+        message="The resource `R.string.title_bankfavorite` appears to be unused">
+        <location column="13" file="src/main/res/values/strings.xml" line="35" />
+    </issue>
+
+    <issue errorLine1="            android:inputType=&quot;text&quot; />"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~" id="TextFields"
+        message="The view name (`@+id/et_account_number`) suggests this is a number, but it does not include a numeric `inputType` (such as &apos;`numberSigned`&apos;)">
+        <location column="13" file="src/main/res/layout/fragment_create_account.xml" line="39" />
+        <location column="13" file="src/main/res/layout/fragment_create_account.xml" line="35" />
+    </issue>
+
+    <issue errorLine1="        &lt;ImageButton" errorLine2="         ~~~~~~~~~~~"
+        id="ContentDescription" message="Missing `contentDescription` attribute on image">
+        <location column="10" file="src/main/res/layout/bank_account_item.xml" line="60" />
+    </issue>
+
+    <issue errorLine1="        &lt;ImageButton" errorLine2="         ~~~~~~~~~~~"
+        id="ContentDescription" message="Missing `contentDescription` attribute on image">
+        <location column="10" file="src/main/res/layout/bank_account_item.xml" line="73" />
+    </issue>
+
+    <issue errorLine1="        &lt;ImageButton" errorLine2="         ~~~~~~~~~~~"
+        id="ContentDescription" message="Missing `contentDescription` attribute on image">
+        <location column="10" file="src/main/res/layout/bank_account_item.xml" line="85" />
+    </issue>
+
+</issues>
