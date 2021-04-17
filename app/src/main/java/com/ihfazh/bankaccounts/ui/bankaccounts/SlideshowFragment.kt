@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -47,7 +46,6 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
         }
 
         slideshowViewModel.bankAccounts.observe(requireActivity()) {
-            Log.d("ONCREATEVIEW", "onCreateView: " + it.toString())
             rvAdapter.setBanks(it)
         }
 

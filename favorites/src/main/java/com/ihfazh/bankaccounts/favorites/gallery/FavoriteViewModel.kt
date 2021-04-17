@@ -8,7 +8,7 @@ import io.reactivex.Completable
 import javax.inject.Inject
 
 class FavoriteViewModel @Inject constructor(
-        val useCase: BankUseCase
+    private val useCase: BankUseCase
 ) : ViewModel() {
     fun toggleFavorite(bankAccount: BankAccount): Completable {
         return useCase.toggleFavorite(bankAccount)

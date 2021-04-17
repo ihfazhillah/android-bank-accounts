@@ -17,9 +17,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class LocalModule {
 
-    val MIGRATION_1_2 = object : Migration(1, 2){
+    private val MIGRATION_1_2 = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("""
+            database.execSQL(
+                """
                 create table bank_account (
                 id INTEGER primary key autoincrement not null,
                 bank_id TEXT not null,
@@ -30,14 +31,15 @@ class LocalModule {
                     on delete cascade
                     on update no action
                 )
-            """.trimIndent())
+            """.trimIndent()
+            )
         }
     }
 
-    val migration2_3 = object: Migration(2, 3){
+    private val migration2_3 = object : Migration(2, 3) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                    """
+                """
                 begin transaction;
                 create temporary table _bank(
                     id TEXT,
@@ -63,10 +65,10 @@ class LocalModule {
         }
     }
 
-    val migration3To4 = object : Migration(3, 4) {
+    private val migration3To4 = object : Migration(3, 4) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                    """
+                """
                     alter table bank_account
                     add column favorite INTEGER NOT NULL default 0;
                 """.trimIndent()
@@ -74,10 +76,10 @@ class LocalModule {
         }
     }
 
-    val migration4To5 = object : Migration(4, 5) {
+    private val migration4To5 = object : Migration(4, 5) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
-                    """
+                """
                         alter table bank
                         add column favorite INTEGER NOT NULL default 0;
                     """.trimIndent()

@@ -38,4 +38,7 @@
     <string name="no_bank_selected">No Bank Selected.</string>
     <string name="update_bank">Update Bank</string>
     <string name="search">Search</string>
+    <string name="love">love</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
 </resources>

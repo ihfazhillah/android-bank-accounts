@@ -9,12 +9,6 @@ import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
 
 class BankDataMapper {
     companion object {
-        private  val TAG = "BankDataMapper"
-       fun mapEntitiesToDomain(entities: List<BankEntity>): List<Bank>{
-           return entities.map {
-               Bank(it.id, it.name, it.code, it.image, it.favorite)
-           }
-       }
 
         fun mapDomainsToEntities(data: List<BanksItem>): List<BankEntity> {
             return data.map{

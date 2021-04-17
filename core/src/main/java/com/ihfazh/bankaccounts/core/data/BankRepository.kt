@@ -2,6 +2,7 @@ package com.ihfazh.bankaccounts.data
 
 import androidx.paging.PagedList
 import androidx.paging.toFlowable
+import com.ihfazh.bankaccounts.core.data.Resource
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.core.domain.repository.IBankRepository
