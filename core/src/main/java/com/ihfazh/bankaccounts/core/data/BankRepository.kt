@@ -3,6 +3,7 @@ package com.ihfazh.bankaccounts.data
 import androidx.paging.PagedList
 import androidx.paging.toFlowable
 import com.ihfazh.bankaccounts.core.data.Resource
+import com.ihfazh.bankaccounts.core.data.remote.responses.BanksItem
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.core.domain.repository.IBankRepository
@@ -11,7 +12,6 @@ import com.ihfazh.bankaccounts.data.local.LocalDataSource
 import com.ihfazh.bankaccounts.data.remote.NetworkBoundResource
 import com.ihfazh.bankaccounts.data.remote.RemoteDataSource
 import com.ihfazh.bankaccounts.data.remote.network.ApiResponse
-import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

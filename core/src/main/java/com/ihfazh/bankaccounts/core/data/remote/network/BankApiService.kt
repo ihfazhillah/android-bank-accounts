@@ -1,6 +1,6 @@
 package com.ihfazh.bankaccounts.data.remote.network
 
-import com.ihfazh.bankaccounts.data.remote.responses.BankResponse
+import com.ihfazh.bankaccounts.core.data.remote.responses.BankResponse
 import io.reactivex.Flowable
 import retrofit2.http.GET
 

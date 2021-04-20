@@ -2,9 +2,9 @@ package com.ihfazh.bankaccounts.data.remote
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.ihfazh.bankaccounts.core.data.remote.responses.BanksItem
 import com.ihfazh.bankaccounts.data.remote.network.ApiResponse
 import com.ihfazh.bankaccounts.data.remote.network.BankApiService
-import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

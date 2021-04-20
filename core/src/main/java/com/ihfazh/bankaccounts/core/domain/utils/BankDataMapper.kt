@@ -1,11 +1,11 @@
 package com.ihfazh.bankaccounts.core.domain.utils
 
+import com.ihfazh.bankaccounts.core.data.remote.responses.BanksItem
 import com.ihfazh.bankaccounts.core.domain.data.Bank
 import com.ihfazh.bankaccounts.core.domain.data.BankAccount
 import com.ihfazh.bankaccounts.data.local.entity.AccountWithBank
 import com.ihfazh.bankaccounts.data.local.entity.BankAccountEntity
 import com.ihfazh.bankaccounts.data.local.entity.BankEntity
-import com.ihfazh.bankaccounts.data.remote.responses.BanksItem
 
 class BankDataMapper {
     companion object {
