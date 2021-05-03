@@ -5,18 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:id="@+id/create_bank_fragments"
     tools:context=".ui.bank_account_create.CreateAccountFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/account_holder_container"
         android:hint="@string/account_holder"
         android:labelFor="@id/et_account_holder">
 
         <EditText
-            android:hint="@string/account_holder"
             android:id="@+id/et_account_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +23,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:id="@+id/account_number_container"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="@string/account_number"
@@ -37,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
-            android:hint="@string/account_number"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,18 +44,18 @@
         android:text="@string/no_bank_selected" />
 
     <include
-        android:id="@+id/bank_item"
         layout="@layout/bank_item"
+        android:id="@+id/bank_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/btn_add_bank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:id="@+id/btn_add_bank"
         android:text="@string/add_bank" />
 
     <Button
