@@ -91,3 +91,5 @@ public *;
 -dontwarn java.util.concurrent.Flow*
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
