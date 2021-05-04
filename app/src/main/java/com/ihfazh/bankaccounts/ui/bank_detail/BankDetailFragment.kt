@@ -19,9 +19,9 @@ import io.reactivex.schedulers.Schedulers
 class BankDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentBankDetailBinding
-    val args: BankDetailFragmentArgs by navArgs()
-    val viewModel: BankDetailViewModel by viewModels()
-    val compositeDisposable = CompositeDisposable()
+    private val args: BankDetailFragmentArgs by navArgs()
+    private val viewModel: BankDetailViewModel by viewModels()
+    private val compositeDisposable = CompositeDisposable()
 
 
     override fun onCreateView(
