@@ -71,8 +71,25 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
 
         binding.fab.setOnClickListener {
             val action =
-                SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment(null)
+                    SlideshowFragmentDirections.actionNavSlideshowToCreateAccountFragment(null)
             findNavController().navigate(action)
+        }
+
+        with(binding.filterAll) {
+            setOnClickListener {
+                slideshowViewModel.setListChoice(ListChoice.All)
+            }
+        }
+
+        with(binding.filterFavorites) {
+            setOnClickListener {
+                slideshowViewModel.setListChoice(ListChoice.Favorites)
+            }
+        }
+
+        slideshowViewModel.getListChoice().observe(viewLifecycleOwner) {
+            binding.filterAll.isChecked = it == ListChoice.All
+            binding.filterFavorites.isChecked = it == ListChoice.Favorites
         }
 
     }

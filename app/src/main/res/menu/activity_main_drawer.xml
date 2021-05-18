@@ -8,17 +8,6 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_account"
             android:title="@string/accounts" />
-        <item
-            android:id="@+id/favoriteList"
-            android:icon="@drawable/ic_baseline_favorite_24"
-            android:title="@string/favorites" />
-        <item
-            android:id="@+id/nav_banks"
-            android:icon="@drawable/ic_bank"
-            android:title="@string/menu_banks" />
-        <item
-            android:id="@+id/bankFavoritesFragment"
-            android:icon="@drawable/ic_bank"
-            android:title="@string/banks_favorite" />
+
     </group>
 </menu>
