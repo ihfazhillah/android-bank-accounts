@@ -28,4 +28,8 @@
     <string name="title_bankfavorite">Banks Favorite</string>
     <string name="title_favorites">Favorites</string>
     <string name="all_accounts">All Accounts</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="bank_accounts">Bank Accounts</string>
 </resources>
