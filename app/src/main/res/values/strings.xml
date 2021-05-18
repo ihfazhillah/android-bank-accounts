@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">BankAccounts</string>
+    <string name="app_name">Bank Contacts</string>
 
     <string name="menu_banks">Banks</string>
-    <string name="add_account">Add Account</string>
-    <string name="account_holder">Account Holder</string>
-    <string name="account_number">Account Number</string>
-    <string name="save">Save</string>
+    <string name="add_account">Tambahkan Akun</string>
+    <string name="account_holder">Pemegang Akun</string>
+    <string name="account_number">Nomor Akun</string>
+    <string name="save">Simpan</string>
     <string name="bank_logo">Bank Logo</string>
-    <string name="accounts">Accounts</string>
-    <string name="more">More</string>
+    <string name="accounts">Akun List</string>
+    <string name="more">Teruskan</string>
     <string name="salin_nomor">Salin Nomor</string>
     <string name="salin_lengkap">Salin Lengkap</string>
-    <string name="edit">Edit</string>
+    <string name="edit">Ubah</string>
     <string name="hapus">Hapus</string>
     <string name="favorites">Favorites</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -20,7 +20,7 @@
     <string name="banks_favorite">Banks Favorite</string>
     <string name="add_bank">Add Bank</string>
     <string name="no_bank_selected">No Bank Selected.</string>
-    <string name="update_bank">Update Bank</string>
+    <string name="update_bank">Ubah Bank</string>
     <string name="search">Search</string>
     <string name="love">love</string>
     <string name="copy">Copy</string>
