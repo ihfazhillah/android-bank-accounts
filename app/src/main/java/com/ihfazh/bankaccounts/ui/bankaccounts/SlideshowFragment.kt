@@ -61,6 +61,11 @@ class SlideshowFragment : Fragment(), IBankAccountItemListener {
 
         slideshowViewModel.bankAccounts.observe(viewLifecycleOwner) {
             rvAdapter.setBanks(it)
+            if (it.isEmpty()) {
+                binding.emptyAnimation.visibility = View.VISIBLE
+            } else {
+                binding.emptyAnimation.visibility = View.INVISIBLE
+            }
         }
 
         binding.rvBankAccountItems.apply {
